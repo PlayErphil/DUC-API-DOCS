@@ -7,9 +7,9 @@
       <meta name=description content="API Reference">
       <title>API Reference</title>
       <link rel=icon href=images/bookmark.png>
-      <link href=stylesheets/screen.css rel=stylesheet media=screen>
-      <link href=stylesheets/print.css rel=stylesheet media=print>
-      <link href=stylesheets/highlight-monokai.css rel=stylesheet media=screen,print>
+      <link href=css/screen.css rel=stylesheet media=screen>
+      <link href=css/print.css rel=stylesheet media=print>
+      <link href=css/highlight-monokai.css rel=stylesheet media=screen,print>
       <script src=js/all.js></script>
    </head>
    <body class="" data-languages="[&#34;bash&#34;,&#34;ruby&#34;,&#34;python&#34;,&#34;javascript&#34;]">
@@ -214,6 +214,1560 @@ api.kittens.get(<span class="hljs-number">2</span>)</code></pre><pre class="high
                   <tr>
                      <td>503</td>
                      <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h1 id="resources">Resources</h1>
+            <p>This describes API endpoints fetching via HTTPS calls.</p>
+            <h2 id="privateusersregister">private/users/register</h2>
+            <h3 id="request">Request</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>appVersion</code></td>
+                     <td>string</td>
+                     <td>Allowed version to interact with the platform</td>
+                  </tr>
+                  <tr>
+                     <td><code>language</code></td>
+                     <td>string</td>
+                     <td>The preferred user language</td>
+                  </tr>
+                  <tr>
+                     <td><code>defaultCurrency</code></td>
+                     <td>string</td>
+                     <td>The preferred user currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>providerValue</code></td>
+                     <td>string</td>
+                     <td>The value of the used provider (phone/email)</td>
+                  </tr>
+                  <tr>
+                     <td><code>password</code></td>
+                     <td>string</td>
+                     <td>The user password</td>
+                  </tr>
+                  <tr>
+                     <td><code>firstName</code></td>
+                     <td>string</td>
+                     <td>The user firstName</td>
+                  </tr>
+                  <tr>
+                     <td><code>lastName</code></td>
+                     <td>string</td>
+                     <td>The user lastName</td>
+                  </tr>
+                  <tr>
+                     <td><code>phone</code></td>
+                     <td>string</td>
+                     <td>The user phone number</td>
+                  </tr>
+                  <tr>
+                     <td><code>birthDate</code></td>
+                     <td>string</td>
+                     <td>The user birthDate</td>
+                  </tr>
+                  <tr>
+                     <td><code>identityNumber</code></td>
+                     <td>string</td>
+                     <td>The user identity number</td>
+                  </tr>
+                  <tr>
+                     <td><code>houseNumber</code></td>
+                     <td>string</td>
+                     <td>The user identity house number</td>
+                  </tr>
+                  <tr>
+                     <td><code>street</code></td>
+                     <td>string</td>
+                     <td>The user street name</td>
+                  </tr>
+                  <tr>
+                     <td><code>city</code></td>
+                     <td>string</td>
+                     <td>The user city name</td>
+                  </tr>
+                  <tr>
+                     <td><code>zipcode</code></td>
+                     <td>string</td>
+                     <td>The user zipcode number</td>
+                  </tr>
+                  <tr>
+                     <td><code>province</code></td>
+                     <td>string</td>
+                     <td>The user province name</td>
+                  </tr>
+                  <tr>
+                     <td><code>country</code></td>
+                     <td>string</td>
+                     <td>The user country name</td>
+                  </tr>
+                  <tr>
+                     <td><code>country_iso_code</code></td>
+                     <td>string</td>
+                     <td>The user alpha2 country iso code</td>
+                  </tr>
+                  <tr>
+                     <td><code>status</code></td>
+                     <td>string</td>
+                     <td>The user initial status</td>
+                  </tr>
+                  <tr>
+                     <td><code>areConditionsAccepted</code></td>
+                     <td>string</td>
+                     <td>The user agreement to use his data for verification purpose</td>
+                  </tr>
+                  <tr>
+                     <td><code>source1</code></td>
+                     <td><code>image object</code></td>
+                     <td>The user pasport picture</td>
+                  </tr>
+                  <tr>
+                     <td><code>source2</code></td>
+                     <td><code>image object</code></td>
+                     <td>The user driving license pciture</td>
+                  </tr>
+                  <tr>
+                     <td><code>image</code></td>
+                     <td>base64 string image</td>
+                     <td>The user pattern picture</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="image-object">Image Object</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>url</code></td>
+                     <td>string</td>
+                     <td>Url to access the image asset</td>
+                  </tr>
+                  <tr>
+                     <td><code>name</code></td>
+                     <td>string</td>
+                     <td>Name of the image asset</td>
+                  </tr>
+                  <tr>
+                     <td><code>type</code></td>
+                     <td>string</td>
+                     <td>Type of the image asset (mime/jpg)</td>
+                  </tr>
+                  <tr>
+                     <td><code>size</code></td>
+                     <td>string</td>
+                     <td>Size of the image asset</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>validatedUser</code></td>
+                     <td>boolean</td>
+                     <td>Indicates if the user has been validated or not</td>
+                  </tr>
+                  <tr>
+                     <td><code>activationCode</code></td>
+                     <td>string</td>
+                     <td>Code send to the user to validate the account</td>
+                  </tr>
+                  <tr>
+                     <td><code>user</code></td>
+                     <td>Object</td>
+                     <td>The user info</td>
+                  </tr>
+                  <tr>
+                     <td><code>accessToken</code></td>
+                     <td>string</td>
+                     <td>Token to access authenticated endpoints</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="privateusersverify">private/users/verify</h2>
+            <h3 id="request-1">Request</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>userID</code></td>
+                     <td>string</td>
+                     <td>Id of the user to be activated</td>
+                  </tr>
+                  <tr>
+                     <td><code>activationCode</code></td>
+                     <td>string</td>
+                     <td>Code send to the user phone or email</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-1">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>validatedUser</code></td>
+                     <td>boolean</td>
+                     <td>Indicates if the user has been validated or not</td>
+                  </tr>
+                  <tr>
+                     <td><code>user</code></td>
+                     <td>Object</td>
+                     <td>The user info</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="authlogin">auth/login</h2>
+            <h3 id="request-2">Request</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>phone</code></td>
+                     <td>string</td>
+                     <td>Registered User phone number</td>
+                  </tr>
+                  <tr>
+                     <td><code>password</code></td>
+                     <td>string</td>
+                     <td>Registered User password</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-2">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>accessToken</code></td>
+                     <td>boolean</td>
+                     <td>Token to access authenticated endpoints</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="privatetransactionscash-outcountries">private/transactions/cash-out/countries</h2>
+            <h3 id="response-3">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>statusText</code></td>
+                     <td>string</td>
+                     <td>Text that indicates the status of the request</td>
+                  </tr>
+                  <tr>
+                     <td><code>status</code></td>
+                     <td>number</td>
+                     <td>The request status code</td>
+                  </tr>
+                  <tr>
+                     <td><code>data</code></td>
+                     <td><code>array[Country]</code></td>
+                     <td>An array of counties object</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="country">Country</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>iso_code</code></td>
+                     <td>string</td>
+                     <td>The country iso code</td>
+                  </tr>
+                  <tr>
+                     <td><code>name</code></td>
+                     <td>string</td>
+                     <td>The country name</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="privatetransactionscash-outservices">private/transactions/cash-out/services</h2>
+            <h3 id="request-3">Request</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>country_iso_code</code></td>
+                     <td>string</td>
+                     <td>The ISO code of the coutry to send money to</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-4">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>statusText</code></td>
+                     <td>string</td>
+                     <td>Text that indicates the status of the request</td>
+                  </tr>
+                  <tr>
+                     <td><code>status</code></td>
+                     <td>number</td>
+                     <td>The request status code</td>
+                  </tr>
+                  <tr>
+                     <td><code>data</code></td>
+                     <td><code>array[Service]</code></td>
+                     <td>An array of services object</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="service">Service</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>id</code></td>
+                     <td>string</td>
+                     <td>The country id</td>
+                  </tr>
+                  <tr>
+                     <td><code>name</code></td>
+                     <td>string</td>
+                     <td>The service name</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="privatetransactionscash-outservices-1">private/transactions/cash-out/services</h2>
+            <h3 id="request-4">Request</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>service_id</code></td>
+                     <td>string</td>
+                     <td>The Id of the service of the selected country</td>
+                  </tr>
+                  <tr>
+                     <td><code>country_iso_code</code></td>
+                     <td>string</td>
+                     <td>The ISO code of the coutry to send money to</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-5">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>statusText</code></td>
+                     <td>string</td>
+                     <td>Text that indicates the status of the request</td>
+                  </tr>
+                  <tr>
+                     <td><code>status</code></td>
+                     <td>number</td>
+                     <td>The request status code</td>
+                  </tr>
+                  <tr>
+                     <td><code>data</code></td>
+                     <td><code>array[Payer]</code></td>
+                     <td>An array of payers object</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="payer">Payer</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>id</code></td>
+                     <td>string</td>
+                     <td>The payer id</td>
+                  </tr>
+                  <tr>
+                     <td><code>transaction_types</code></td>
+                     <td><code>transaction type object</code></td>
+                     <td>The payes asociated transactions type (C2C\B2B)</td>
+                  </tr>
+                  <tr>
+                     <td><code>currency</code></td>
+                     <td>string</td>
+                     <td>The payer currency</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="transaction-type-object">transaction type object</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>credit_party_identifiers_accepted</code></td>
+                     <td><code>array[string]</code></td>
+                     <td>Dynamic field to be completed by the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>required_receiving_entity_fields</code></td>
+                     <td><code>array[string]</code></td>
+                     <td>Dynamic field to be completed by the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>required_sending_entity_fields</code></td>
+                     <td><code>array[string]</code></td>
+                     <td>Dynamic field to be completed by the user</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="privatetransactionscash-outrequest-send">private/transactions/cash-out/request-send</h2>
+            <h3 id="request-5">Request</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>payer_id</code></td>
+                     <td>string</td>
+                     <td>The Id of the payer of the selected service</td>
+                  </tr>
+                  <tr>
+                     <td><code>destination</code></td>
+                     <td><code>object</code></td>
+                     <td>Destination Info</td>
+                  </tr>
+                  <tr>
+                     <td><code>transactionType</code></td>
+                     <td>string</td>
+                     <td>The type of transaction selected from those available by the payet</td>
+                  </tr>
+                  <tr>
+                     <td><code>currency</code></td>
+                     <td>string</td>
+                     <td>Currency of the sending user</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-6">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>id</code></td>
+                     <td>string</td>
+                     <td>The id of the quotation</td>
+                  </tr>
+                  <tr>
+                     <td><code>external_id</code></td>
+                     <td>number</td>
+                     <td>The external id</td>
+                  </tr>
+                  <tr>
+                     <td><code>payer</code></td>
+                     <td><code>object</code></td>
+                     <td>The external id</td>
+                  </tr>
+                  <tr>
+                     <td><code>fee</code></td>
+                     <td><code>object</code></td>
+                     <td>An object with the fee info</td>
+                  </tr>
+                  <tr>
+                     <td><code>transactionType</code></td>
+                     <td><code>transaction type object</code></td>
+                     <td>The payes asociated transactions type (C2C\B2B)</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="payer-1">payer</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>transactionType</code></td>
+                     <td><code>transaction type object</code></td>
+                     <td>The payes asociated transactions type (C2C\B2B)</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="transaction-type-object-1">transaction type object</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>credit_party_identifiers_accepted</code></td>
+                     <td>array[string]</td>
+                     <td>Dynamic field to be completed by the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>required_receiving_entity_fields</code></td>
+                     <td>array[string]</td>
+                     <td>Dynamic field to be completed by the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>required_sending_entity_fields</code></td>
+                     <td>array[string]</td>
+                     <td>Dynamic field to be completed by the user</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="fee">fee</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>amount</code></td>
+                     <td>string</td>
+                     <td>The fee amount</td>
+                  </tr>
+                  <tr>
+                     <td><code>currency</code></td>
+                     <td>string</td>
+                     <td>The fee currency</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="privatetransactionscash-outconfirm-send">private/transactions/cash-out/confirm-send</h2>
+            <h3 id="request-6">Request</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>quotation_id</code></td>
+                     <td>string</td>
+                     <td>The id of the requested quotation</td>
+                  </tr>
+                  <tr>
+                     <td><code>external_id</code></td>
+                     <td>object</td>
+                     <td>The external id of the requested quotation</td>
+                  </tr>
+                  <tr>
+                     <td><code>credit_party_identifier</code></td>
+                     <td>string</td>
+                     <td>Dynamic fields to be completed by the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>sender</code></td>
+                     <td>string</td>
+                     <td>Dynamic fields to be completed by the user (Only for C2C transactions type)</td>
+                  </tr>
+                  <tr>
+                     <td><code>beneficiary</code></td>
+                     <td>string</td>
+                     <td>Dynamic fields to be completed by the user (Only for C2C transactions type)</td>
+                  </tr>
+                  <tr>
+                     <td><code>sending_business</code></td>
+                     <td>string</td>
+                     <td>Dynamic fields to be completed by the user (Only for B2B transactions type)</td>
+                  </tr>
+                  <tr>
+                     <td><code>receiving_business</code></td>
+                     <td>string</td>
+                     <td>Dynamic fields to be completed by the user (Only for B2B transactions type)</td>
+                  </tr>
+                  <tr>
+                     <td><code>totalAmount</code></td>
+                     <td>string</td>
+                     <td>The total amount to be paid by the user with the fee included</td>
+                  </tr>
+                  <tr>
+                     <td><code>currency</code></td>
+                     <td>string</td>
+                     <td>The user&#39;s currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>country_iso_code</code></td>
+                     <td>string</td>
+                     <td>The ISO code of the coutry to send money to</td>
+                  </tr>
+                  <tr>
+                     <td><code>service_id</code></td>
+                     <td>string</td>
+                     <td>The Id of the service of the selected country</td>
+                  </tr>
+                  <tr>
+                     <td><code>payer_id</code></td>
+                     <td>string</td>
+                     <td>The Id of the payer of the selected service</td>
+                  </tr>
+                  <tr>
+                     <td><code>external_fee</code></td>
+                     <td>string</td>
+                     <td>The fee.amount field of the response from the previous request</td>
+                  </tr>
+                  <tr>
+                     <td><code>amount</code></td>
+                     <td>string</td>
+                     <td>The amount entered by the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>location</code></td>
+                     <td><code>object</code></td>
+                     <td>Information on the users GPS location at the time of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardNumber</code></td>
+                     <td>string</td>
+                     <td>Information for payment, credit card number</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardHolderName</code></td>
+                     <td>string</td>
+                     <td>Information for payment, name that appears on the credit card</td>
+                  </tr>
+                  <tr>
+                     <td><code>expiryDate</code></td>
+                     <td>string</td>
+                     <td>Information for payment, expiration date</td>
+                  </tr>
+                  <tr>
+                     <td><code>cvc</code></td>
+                     <td>string</td>
+                     <td>Information for payment, cvc</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_name</code></td>
+                     <td>string</td>
+                     <td>Information for payment, street name</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_number</code></td>
+                     <td>string</td>
+                     <td>Information for payment, residence number</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_zipcode</code></td>
+                     <td>string</td>
+                     <td>Information for payment, zip code</td>
+                  </tr>
+                  <tr>
+                     <td><code>iso_code</code></td>
+                     <td>string</td>
+                     <td>Information for payment, card currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>cardCurrency</code></td>
+                     <td>string</td>
+                     <td>Currency of the sending user</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountry</code></td>
+                     <td>string</td>
+                     <td>Information for payment, country code of the cards currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountryName</code></td>
+                     <td>string</td>
+                     <td>Information for the payment, name of the country of the currency of the card</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="location">location</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>latitude</code></td>
+                     <td>string</td>
+                     <td>Latitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>longitude</code></td>
+                     <td>string</td>
+                     <td>Longitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>timestamp</code></td>
+                     <td>string</td>
+                     <td>Timestamp</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-7">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>transactionStatus</code></td>
+                     <td>string</td>
+                     <td>The status of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>transactionID</code></td>
+                     <td>string</td>
+                     <td>The id of the transaction</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="privatetransactionsid">private/transactions/{id}</h2>
+            <h3 id="response-8">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>transactionStatus</code></td>
+                     <td>string</td>
+                     <td>The status of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>transactionID</code></td>
+                     <td>string</td>
+                     <td>The id of the transaction</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="privatetransactions">private/transactions</h2>
+            <h3 id="path">Path</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>skip</code></td>
+                     <td>number</td>
+                     <td>The pagination offset</td>
+                  </tr>
+                  <tr>
+                     <td><code>limit</code></td>
+                     <td>number</td>
+                     <td>The the amount of rows</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-9">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>transactionStatus</code></td>
+                     <td>string</td>
+                     <td>The status of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>transactionID</code></td>
+                     <td>string</td>
+                     <td>The id of the transaction</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="privatetransactionstokenp2p">private/transactions/token/p2p</h2>
+            <h3 id="request-7">Request</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>toAddress</code></td>
+                     <td>string</td>
+                     <td>The receiver wallet address</td>
+                  </tr>
+                  <tr>
+                     <td><code>amount</code></td>
+                     <td>number</td>
+                     <td>The the amount to send</td>
+                  </tr>
+                  <tr>
+                     <td><code>currency</code></td>
+                     <td>string</td>
+                     <td>The the currency of the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>concept</code></td>
+                     <td>string</td>
+                     <td>A brief description</td>
+                  </tr>
+                  <tr>
+                     <td><code>location</code></td>
+                     <td><code>object</code></td>
+                     <td>Information on the users GPS location at the time of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardNumber</code></td>
+                     <td>string</td>
+                     <td>Information for payment, credit card number</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardHolderName</code></td>
+                     <td>string</td>
+                     <td>Information for payment, name that appears on the credit card</td>
+                  </tr>
+                  <tr>
+                     <td><code>expiryDate</code></td>
+                     <td>string</td>
+                     <td>Information for payment, expiration date</td>
+                  </tr>
+                  <tr>
+                     <td><code>cvc</code></td>
+                     <td>string</td>
+                     <td>Information for payment, cvc</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_name</code></td>
+                     <td>string</td>
+                     <td>Information for payment, street name</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_number</code></td>
+                     <td>string</td>
+                     <td>Information for payment, residence number</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_zipcode</code></td>
+                     <td>string</td>
+                     <td>Information for payment, zip code</td>
+                  </tr>
+                  <tr>
+                     <td><code>iso_code</code></td>
+                     <td>string</td>
+                     <td>Information for payment, card currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>cardCurrency</code></td>
+                     <td>string</td>
+                     <td>Currency of the sending user</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountry</code></td>
+                     <td>string</td>
+                     <td>Information for payment, country code of the cards currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountryName</code></td>
+                     <td>string</td>
+                     <td>Information for the payment, name of the country of the currency of the card</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="location-1">location</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>latitude</code></td>
+                     <td>string</td>
+                     <td>Latitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>longitude</code></td>
+                     <td>string</td>
+                     <td>Longitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>timestamp</code></td>
+                     <td>string</td>
+                     <td>Timestamp</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-10">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>transactionStatus</code></td>
+                     <td>string</td>
+                     <td>The status of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>transactionID</code></td>
+                     <td>string</td>
+                     <td>The id of the transaction</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="privatetransactionscash-outemail">private/transactions/cash-out/email</h2>
+            <h3 id="request-8">Request</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>email</code></td>
+                     <td>string</td>
+                     <td>The destination email</td>
+                  </tr>
+                  <tr>
+                     <td><code>amount</code></td>
+                     <td>number</td>
+                     <td>The the amount to send</td>
+                  </tr>
+                  <tr>
+                     <td><code>currency</code></td>
+                     <td>string</td>
+                     <td>The the currency of the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>concept</code></td>
+                     <td>string</td>
+                     <td>A brief description</td>
+                  </tr>
+                  <tr>
+                     <td><code>location</code></td>
+                     <td><code>object</code></td>
+                     <td>Information on the users GPS location at the time of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardNumber</code></td>
+                     <td>string</td>
+                     <td>Information for payment, credit card number</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardHolderName</code></td>
+                     <td>string</td>
+                     <td>Information for payment, name that appears on the credit card</td>
+                  </tr>
+                  <tr>
+                     <td><code>expiryDate</code></td>
+                     <td>string</td>
+                     <td>Information for payment, expiration date</td>
+                  </tr>
+                  <tr>
+                     <td><code>cvc</code></td>
+                     <td>string</td>
+                     <td>Information for payment, cvc</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_name</code></td>
+                     <td>string</td>
+                     <td>Information for payment, street name</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_number</code></td>
+                     <td>string</td>
+                     <td>Information for payment, residence number</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_zipcode</code></td>
+                     <td>string</td>
+                     <td>Information for payment, zip code</td>
+                  </tr>
+                  <tr>
+                     <td><code>iso_code</code></td>
+                     <td>string</td>
+                     <td>Information for payment, card currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>cardCurrency</code></td>
+                     <td>string</td>
+                     <td>Currency of the sending user</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountry</code></td>
+                     <td>string</td>
+                     <td>Information for payment, country code of the cards currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountryName</code></td>
+                     <td>string</td>
+                     <td>Information for the payment, name of the country of the currency of the card</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="location-2">location</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>latitude</code></td>
+                     <td>string</td>
+                     <td>Latitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>longitude</code></td>
+                     <td>string</td>
+                     <td>Longitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>timestamp</code></td>
+                     <td>string</td>
+                     <td>Timestamp</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-11">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>transactionStatus</code></td>
+                     <td>string</td>
+                     <td>The status of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>transactionID</code></td>
+                     <td>string</td>
+                     <td>The id of the transaction</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="privatetransactionscash-outcreditcard">private/transactions/cash-out/creditcard</h2>
+            <h3 id="request-9">Request</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>service</code></td>
+                     <td>string</td>
+                     <td>The service identifier (cardUSD, cardCUP)</td>
+                  </tr>
+                  <tr>
+                     <td><code>amount</code></td>
+                     <td>number</td>
+                     <td>The the amount to send</td>
+                  </tr>
+                  <tr>
+                     <td><code>currency</code></td>
+                     <td>string</td>
+                     <td>The the currency of the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>concept</code></td>
+                     <td>string</td>
+                     <td>A brief description</td>
+                  </tr>
+                  <tr>
+                     <td><code>cardNumber</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys card number</td>
+                  </tr>
+                  <tr>
+                     <td><code>cardHolderName</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys card name</td>
+                  </tr>
+                  <tr>
+                     <td><code>bankName</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys bank name</td>
+                  </tr>
+                  <tr>
+                     <td><code>contactPhone</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys phone number</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryCurrency</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys card currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryCountry</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys country</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryAmount</code></td>
+                     <td>string</td>
+                     <td>The amount to receive by the beneficiary</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryCountryCode</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys alpha2 country iso code</td>
+                  </tr>
+                  <tr>
+                     <td><code>location</code></td>
+                     <td><code>object</code></td>
+                     <td>Information on the users GPS location at the time of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardNumber</code></td>
+                     <td>string</td>
+                     <td>Information for payment, credit card number</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardHolderName</code></td>
+                     <td>string</td>
+                     <td>Information for payment, name that appears on the credit card</td>
+                  </tr>
+                  <tr>
+                     <td><code>expiryDate</code></td>
+                     <td>string</td>
+                     <td>Information for payment, expiration date</td>
+                  </tr>
+                  <tr>
+                     <td><code>cvc</code></td>
+                     <td>string</td>
+                     <td>Information for payment, cvc</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_name</code></td>
+                     <td>string</td>
+                     <td>Information for payment, street name</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_number</code></td>
+                     <td>string</td>
+                     <td>Information for payment, residence number</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_zipcode</code></td>
+                     <td>string</td>
+                     <td>Information for payment, zip code</td>
+                  </tr>
+                  <tr>
+                     <td><code>iso_code</code></td>
+                     <td>string</td>
+                     <td>Information for payment, card currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>cardCurrency</code></td>
+                     <td>string</td>
+                     <td>Currency of the sending user</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountry</code></td>
+                     <td>string</td>
+                     <td>Information for payment, country code of the cards currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountryName</code></td>
+                     <td>string</td>
+                     <td>Information for the payment, name of the country of the currency of the card</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="location-3">location</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>latitude</code></td>
+                     <td>string</td>
+                     <td>Latitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>longitude</code></td>
+                     <td>string</td>
+                     <td>Longitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>timestamp</code></td>
+                     <td>string</td>
+                     <td>Timestamp</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-12">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>transactionStatus</code></td>
+                     <td>string</td>
+                     <td>The status of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>transactionID</code></td>
+                     <td>string</td>
+                     <td>The id of the transaction</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h2 id="privatetransactionscash-outdelivery">private/transactions/cash-out/delivery</h2>
+            <h3 id="request-10">Request</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>service</code></td>
+                     <td>string</td>
+                     <td>The service identifier (deliveryUSD, deliveryCUP)</td>
+                  </tr>
+                  <tr>
+                     <td><code>amount</code></td>
+                     <td>number</td>
+                     <td>The the amount to send</td>
+                  </tr>
+                  <tr>
+                     <td><code>currency</code></td>
+                     <td>string</td>
+                     <td>The the currency of the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>concept</code></td>
+                     <td>string</td>
+                     <td>A brief description</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryAddress</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys address</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryFirstName</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys first name</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryID</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys identification number</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryPhone</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys phone number</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryCurrency</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryCountry</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys country</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryAmount</code></td>
+                     <td>string</td>
+                     <td>The amount to receive by the beneficiary</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryArea</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys province</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryLastName</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys lastname</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliverySecondLastName</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys second lastname</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryCountryCode</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys alpha2 country iso code</td>
+                  </tr>
+                  <tr>
+                     <td><code>location</code></td>
+                     <td><code>object</code></td>
+                     <td>Information on the users GPS location at the time of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardNumber</code></td>
+                     <td>string</td>
+                     <td>Information for payment, credit card number</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardHolderName</code></td>
+                     <td>string</td>
+                     <td>Information for payment, name that appears on the credit card</td>
+                  </tr>
+                  <tr>
+                     <td><code>expiryDate</code></td>
+                     <td>string</td>
+                     <td>Information for payment, expiration date</td>
+                  </tr>
+                  <tr>
+                     <td><code>cvc</code></td>
+                     <td>string</td>
+                     <td>Information for payment, cvc</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_name</code></td>
+                     <td>string</td>
+                     <td>Information for payment, street name</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_number</code></td>
+                     <td>string</td>
+                     <td>Information for payment, residence number</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_zipcode</code></td>
+                     <td>string</td>
+                     <td>Information for payment, zip code</td>
+                  </tr>
+                  <tr>
+                     <td><code>iso_code</code></td>
+                     <td>string</td>
+                     <td>Information for payment, card currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>cardCurrency</code></td>
+                     <td>string</td>
+                     <td>Currency of the sending user</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountry</code></td>
+                     <td>string</td>
+                     <td>Information for payment, country code of the cards currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountryName</code></td>
+                     <td>string</td>
+                     <td>Information for the payment, name of the country of the currency of the card</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="location-4">location</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>latitude</code></td>
+                     <td>string</td>
+                     <td>Latitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>longitude</code></td>
+                     <td>string</td>
+                     <td>Longitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>timestamp</code></td>
+                     <td>string</td>
+                     <td>Timestamp</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-13">Response</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>transactionStatus</code></td>
+                     <td>string</td>
+                     <td>The status of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>transactionID</code></td>
+                     <td>string</td>
+                     <td>The id of the transaction</td>
                   </tr>
                </tbody>
             </table>
