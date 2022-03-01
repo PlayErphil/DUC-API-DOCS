@@ -1749,7 +1749,7 @@ curl --location -g --request GET 'https://backend.ducapp.net/api/private/payment
 ```
 
 
-> Example Response;
+> Example Response:
 
 ```json
 {
@@ -1797,11 +1797,206 @@ Empty, but the order_id is required. Eg. `/api/private/payments/order/OI00000000
 
 ## Get Exchange Rates
 
+
+```python
+import requests
+
+url = "https://backend.ducapp.net/api/public/rates?base=cad"
+
+payload={}
+headers = {}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```javascript
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+
+fetch("https://backend.ducapp.net/api/public/rates?base=cup", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+```shell
+curl --location --request GET 'https://backend.ducapp.net/api/public/rates?base=cup'
+```
+
+> Example Response:
+
+```json
+{
+    "base": "USD",
+    "rates": {
+        "USD": "1.0000",
+        "CAD": "1.2473",
+        "CUP": "55.1192",
+        "EUR": "0.8644"
+    },
+    "date": "2022-02-28"
+}
+```
+
+### Request
+
 GET `/api/public/rates?base={currency}`
 
 Host: `backend.ducapp.net`
 
-authorization: `Bearer <YOUR_ACCESS_TOKEN>`
+### Request Body
 
-x-api-key: `<YOUR_API_KEY>`
+None, only a parameter query value for the currency.
 
+Eg: `https://backend.ducapp.net/api/public/rates?base=usd`
+
+### Response Body
+
+## Get Delivery Zones
+
+For the Home Delivery Service, there are different Zones defined in the system. Each Zone is made up of one or more provinces
+
+```shell
+curl --location --request GET 'https://backend.ducapp.net/api/public/CU/zones'
+```
+
+```python
+import requests
+
+url = "https://backend.ducapp.net/api/public/CU/zones"
+
+payload={}
+headers = {}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```javascript
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+
+fetch("https://backend.ducapp.net/api/public/CU/zones", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+> Example Response:
+
+```json
+{
+    "countryName": "Cuba",
+    "countryShortCode": "CU",
+    "zones": [
+        {
+            "name": "Provincias",
+            "locations": [
+                "Artemisa",
+                "Ciego de Ávila",
+                "Camagüey",
+                "Cienfuegos",
+                "Granma",
+                "Guantánamo",
+                "Holguín",
+                "Isla de la Juventud",
+                "Las Tunas",
+                "Matanzas",
+                "Mayabeque",
+                "Pinar del Río",
+                "Sancti Spíritus",
+                "Santiago de Cuba",
+                "Villa Clara"
+            ]
+        },
+        {
+            "name": "Habana",
+            "locations": [
+                "La Habana"
+            ]
+        }
+    ]
+}
+```
+
+### Request
+
+GET `/api/public/{COUNTRY_CODE}/zones`
+
+Host: `backend.ducapp.net`
+
+### Response Body
+
+None, only parameter required is in the path and the country code.
+
+Eg: `https://backend.ducapp.net/api/public/CU/zones`
+
+### Response Body
+
+## Get Fee
+
+The transaction fee varies depending on the type of service and the amount to send. In the case of Home Delivery service, there are different fees per Zone and for the amount to be sent.
+
+```python
+import requests
+
+url = "https://backend.ducapp.net/api/public/fees/cu/deliveryCUP/Habana?amount=1000"
+
+payload={}
+headers = {}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```shell
+curl --location --request GET 'https://backend.ducapp.net/api/public/fees/cu/deliveryCUP/Habana?amount=1000'
+```
+
+```javascript
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+
+fetch("https://backend.ducapp.net/api/public/fees/cu/deliveryCUP/Habana?amount=1000", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+> Example Response:
+
+```json
+{
+    "countryName": "Cuba",
+    "countryShortCode": "CU",
+    "zoneName": "Habana",
+    "service": "deliveryCUP",
+    "rangeMin": 750.01,
+    "rangeMax": 1000,
+    "amountToDeliver": 1000,
+    "currencyToDeliver": "CUP",
+    "fee": 40,
+    "currencyFee": "USD"
+}
+```
+
+### Request
+
+GET `/api/public/fees/cu/deliveryCUP/Habana?amount=1000`
+
+Host: `backend.ducapp.net`
+
+
+### Request Body
+
+### Response Bodys
