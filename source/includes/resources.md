@@ -1,5 +1,60 @@
 # Endpoints
 
+## API Health
+
+Check if the API is active.
+
+```shell
+curl --location --request GET 'https://backend.ducwallet.com/api/health'
+```
+```python
+import requests
+
+url = "https://backend.ducwallet.com/api/health"
+
+payload={}
+headers = {}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+```javascript
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+
+fetch("https://backend.ducwallet.com/api/health", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+> Example Response:
+
+```json
+{
+    "status": true
+}
+```
+
+
+### Request
+POST `/api/health`
+
+Host: `backend.ducapp.net`
+
+### Request Body
+
+No request body
+
+### Response Body
+
+| NAME     | TYPE    | DESCRIPTION    |
+| -------- | ------- | -------------- |
+| `status` | boolean | Status of API. |
+
 ## Login
 
 ```shell
@@ -86,7 +141,7 @@ Content-Type: `application/json`
 | `phone`    | string | Registered User phone number |
 | `password` | string | Registered User password     |
 
-### Response
+### Response Body
 
 | NAME                     | TYPE    | DESCRIPTION                             |
 | ------------------------ | ------- | --------------------------------------- |
@@ -275,7 +330,7 @@ print(response.text)
         "trustLevel": 0,
         "isVirgin": true,
         "transactionCount": 0,
-        "beneficiaries": [],
+        "beneficiary": [],
         "requestOTPCount": 0,
         "firstRequestOTPAt": null,
         "_id": "61bc2d893c83e9346b64d456",
@@ -456,7 +511,7 @@ Content-Type: `application/json`
 
 
 
-### Response
+### Response Body
 
 ## Verify User
 
@@ -547,7 +602,7 @@ fetch("https://backend.ducapp.net/api/private/users/verify", requestOptions)
         "trustLevel": 0,
         "isVirgin": true,
         "transactionCount": 0,
-        "beneficiaries": [],
+        "beneficiary": [],
         "requestOTPCount": 0,
         "firstRequestOTPAt": null,
         "_id": "61c0da6a7623905113d7683e",
@@ -741,7 +796,7 @@ Content-Type: `application/json`
 | `userID`         | string | Id of the user to be activated       |
 | `activationCode` | string | Code send to the user phone or email |
 
-### Response
+### Response Body
 
 | NAME            | TYPE    | DESCRIPTION                                     |
 | --------------- | ------- | ----------------------------------------------- |
@@ -833,7 +888,7 @@ x-api-key: `<YOUR_API_KEY>`
 
 Empty
 
-### Response
+### Response Body
 
 | NAME         | TYPE             | DESCRIPTION                                   |
 | ------------ | ---------------- | --------------------------------------------- |
@@ -954,7 +1009,7 @@ Content-Type: `application/json`
 | ------------------ | ------ | ------------------------------------------- |
 | `country_iso_code` | string | The ISO code of the coutry to send money to |
 
-### Response
+### Response Body
 
 | NAME         | TYPE             | DESCRIPTION                                   |
 | ------------ | ---------------- | --------------------------------------------- |
@@ -1097,7 +1152,7 @@ Content-Type: `application/json`
 | `service_id`       | string | The Id of the service of the selected country |
 | `country_iso_code` | string | The ISO code of the coutry to send money to   |
 
-### Response
+### Response Body
 
 | NAME         | TYPE           | DESCRIPTION                                   |
 | ------------ | -------------- | --------------------------------------------- |
@@ -1289,7 +1344,7 @@ Content-Type: `application/json`
 | `transactionType` | string   | The type of transaction selected from those available by the payet |
 | `currency`        | string   | Currency of the sending user                                       |
 
-### Response
+### Response Body
 
 | NAME              | TYPE                      | DESCRIPTION                                     |
 | ----------------- | ------------------------- | ----------------------------------------------- |
@@ -1568,7 +1623,7 @@ Content-Type: `application/json`
 | `longitude` | string | Longitude   |
 | `timestamp` | string | Timestamp   |
 
-### Response
+### Response Body
 
 | NAME                | TYPE   | DESCRIPTION                   |
 | ------------------- | ------ | ----------------------------- |
@@ -1577,7 +1632,7 @@ Content-Type: `application/json`
 
 
 
-## Dynamic Payment
+## Create Dynamic Payment
 
 ```python
 import requests
@@ -1703,7 +1758,7 @@ Content-Type: `application/json`
 
 
 
-### Response
+### Response Body
 
 ## Transaction Status
 
@@ -1791,12 +1846,1174 @@ x-api-key: `<YOUR_API_KEY>`
 
 Empty, but the order_id is required. Eg. `/api/private/payments/order/OI0000000021`
 
-### Response
+### Response Body
 
 
+## Send to Credit Card
+
+Send money to MLC/CUP Cuban card.
+
+```python
+import requests
+import json
+
+url = "https://backend.ducapp.net/api/private/transactions/cash-out/creditcard"
+
+payload = json.dumps({
+  "service": "cardCUP",
+  "amount": 100,
+  "currency": "USD",
+  "concept": "Tesing",
+  "cardNumber": "9204757871131683",
+  "cardHolderName": "John Doe",
+  "bankName": "Banco Metropolitano",
+  "contactPhone": "+5352532911",
+  "deliveryCurrency": "CUC",
+  "deliveryCountry": "Cuba",
+  "deliveryAmount": "8000",
+  "deliveryCountryCode": "CU",
+  "location": {
+    "latitude": "-76.25804853625596",
+    "longitude": "20.888864980079234",
+    "timestamp": "1635185398"
+  },
+  "creditCardNumber": "5454545454545454",
+  "creditCardHolderName": "Test",
+  "expiryDate": "05/22",
+  "cvc": "123",
+  "avs_street_name": "Main Street",
+  "avs_street_number": "508",
+  "avs_zipcode": "80100",
+  "iso_code": "840",
+  "cardCurrency": "USD",
+  "currencyCountry": "US",
+  "currencyCountryName": "United States"
+})
+headers = {
+  'authorization': 'Bearer <YOUR_ACCESS_TOKEN>',
+  'x-api-key': '<YOUR_API_KEY>',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+```shell
+curl --location --request POST 'https://backend.ducapp.net/api/private/transactions/cash-out/creditcard' \
+--header 'authorization: Bearer <YOUR_ACCESS_TOKEN>' \
+--header 'x-api-key: <YOUR_API_KEY>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "service": "cardCUP",
+    "amount": 100,
+    "currency": "USD",
+    "concept": "Tesing",
+    "cardNumber": "9204757871131683",
+    "cardHolderName": "John Doe",
+    "bankName": "Banco Metropolitano",
+    "contactPhone": "+5352532911",
+    "deliveryCurrency": "CUC",
+    "deliveryCountry": "Cuba",
+    "deliveryAmount": "8000",
+    "deliveryCountryCode": "CU",
+    "location": {
+        "latitude": "-76.25804853625596",
+        "longitude": "20.888864980079234",
+        "timestamp": "1635185398"
+    },
+    "creditCardNumber": "5454545454545454",
+    "creditCardHolderName": "Test",
+    "expiryDate": "05/22",
+    "cvc": "123",
+    "avs_street_name": "Main Street",
+    "avs_street_number": "508",
+    "avs_zipcode": "80100",
+    "iso_code": "840",
+    "cardCurrency": "USD",
+    "currencyCountry": "US",
+    "currencyCountryName": "United States"
+}'
+```
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("authorization", "Bearer <YOUR_ACCESS_TOKEN>");
+myHeaders.append("x-api-key", "<YOUR_API_KEY>");
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "service": "cardCUP",
+  "amount": 100,
+  "currency": "USD",
+  "concept": "Tesing",
+  "cardNumber": "9204757871131683",
+  "cardHolderName": "John Doe",
+  "bankName": "Banco Metropolitano",
+  "contactPhone": "+5352532911",
+  "deliveryCurrency": "CUC",
+  "deliveryCountry": "Cuba",
+  "deliveryAmount": "8000",
+  "deliveryCountryCode": "CU",
+  "location": {
+    "latitude": "-76.25804853625596",
+    "longitude": "20.888864980079234",
+    "timestamp": "1635185398"
+  },
+  "creditCardNumber": "5454545454545454",
+  "creditCardHolderName": "Test",
+  "expiryDate": "05/22",
+  "cvc": "123",
+  "avs_street_name": "Main Street",
+  "avs_street_number": "508",
+  "avs_zipcode": "80100",
+  "iso_code": "840",
+  "cardCurrency": "USD",
+  "currencyCountry": "US",
+  "currencyCountryName": "United States"
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://backend.ducapp.net/api/private/transactions/cash-out/creditcard", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+> Example Response:
+
+```json
+{
+    "data": {
+        "status": 201,
+        "record": {
+            "transactionAmount": 106,
+            "transactionStatus": "pending",
+            "currency": "USD",
+            "type": "CASH_OUT_TRANSACTION",
+            "images": [],
+            "balanceSender": 0,
+            "balanceReceiver": 0,
+            "_id": "62211f25b0002e9ca621d103",
+            "sender": "0x0F673BAF2C67eb6165CC526df5386032d653fbB5",
+            "receiver": "0x946ec5B0fC2B78adaC1fC39DC2eE682ddFc3913E",
+            "owner": "5ebaf91c80b385353b9283dd",
+            "metadata": {
+                "method": "CREDIT_CARD_TRANSACTION",
+                "apiClientId": "621fce78b0002ebdd121bea3",
+                "cardNumber": "9204757871131683",
+                "cardHolderName": "John Doe",
+                "bankName": "Banco Metropolitano",
+                "contactPhone": "+5352532911",
+                "deliveryCountry": "Cuba",
+                "deliveryCountryCode": "CU",
+                "deliveryAmount": "8000",
+                "deliveryCurrency": "CUP",
+                "taxRate": 82,
+                "exchangeSpread": 2.5,
+                "marginValue": 1,
+                "feeAmount": 6,
+                "feeAmountInUserCurrency": 6,
+                "fromBatch": false
+            },
+            "concept": "Tesing",
+            "createdAt": "2022-03-03T20:03:49.041Z",
+            "updatedAt": "2022-03-03T20:03:49.041Z",
+            "transactionID": "AA00287334",
+            "__v": 0,
+            "id": "62211f25b0002e9ca621d103"
+        },
+        "payload": {
+            "method": "CREDIT_CARD_TRANSACTION",
+            "_id": "62211f25b0002e7ba721d10d",
+            "transactionID": "62211f25b0002e9ca621d103",
+            "metadata": [
+                {
+                    "key": "apiClientId",
+                    "value": "621fce78b0002ebdd121bea3"
+                },
+                {
+                    "key": "cardNumber",
+                    "value": "9204757871131683"
+                },
+                {
+                    "key": "cardHolderName",
+                    "value": "John Doe"
+                },
+                {
+                    "key": "verifyCardNumber"
+                },
+                {
+                    "key": "bankName",
+                    "value": "Banco Metropolitano"
+                },
+                {
+                    "key": "contactPhone",
+                    "value": "+5352532911"
+                },
+                {
+                    "key": "deliveryCountry",
+                    "value": "Cuba"
+                },
+                {
+                    "key": "deliveryCountryCode",
+                    "value": "CU"
+                },
+                {
+                    "key": "deliveryAmount",
+                    "value": "8000"
+                },
+                {
+                    "key": "deliveryCurrency",
+                    "value": "CUP"
+                },
+                {
+                    "key": "taxRate",
+                    "value": "82"
+                },
+                {
+                    "key": "exchangeSpread",
+                    "value": "2.5"
+                },
+                {
+                    "key": "marginValue",
+                    "value": "1"
+                },
+                {
+                    "key": "feeAmount",
+                    "value": "6"
+                },
+                {
+                    "key": "feeAmountInUserCurrency",
+                    "value": "6"
+                }
+            ],
+            "createdAt": "2022-03-03T20:03:49.103Z",
+            "updatedAt": "2022-03-03T20:03:49.103Z",
+            "__v": 0,
+            "id": "62211f25b0002e7ba721d10d"
+        }
+    },
+    "transaction": {
+        "transactionAmount": 106,
+        "transactionStatus": "pending",
+        "currency": "USD",
+        "type": "CASH_OUT_TRANSACTION",
+        "images": [],
+        "balanceSender": 0,
+        "balanceReceiver": 0,
+        "_id": "62211f25b0002e9ca621d103",
+        "sender": "0x0F673BAF2C67eb6165CC526df5386032d653fbB5",
+        "receiver": "0x946ec5B0fC2B78adaC1fC39DC2eE682ddFc3913E",
+        "owner": "5ebaf91c80b385353b9283dd",
+        "metadata": {
+            "method": "CREDIT_CARD_TRANSACTION",
+            "apiClientId": "621fce78b0002ebdd121bea3",
+            "cardNumber": "9204757871131683",
+            "cardHolderName": "John Doe",
+            "bankName": "Banco Metropolitano",
+            "contactPhone": "+5352532911",
+            "deliveryCountry": "Cuba",
+            "deliveryCountryCode": "CU",
+            "deliveryAmount": "8000",
+            "deliveryCurrency": "CUP",
+            "taxRate": 82,
+            "exchangeSpread": 2.5,
+            "marginValue": 1,
+            "feeAmount": 6,
+            "feeAmountInUserCurrency": 6,
+            "fromBatch": false
+        },
+        "concept": "Tesing",
+        "createdAt": "2022-03-03T20:03:49.041Z",
+        "updatedAt": "2022-03-03T20:03:49.041Z",
+        "transactionID": "AA00287334",
+        "__v": 0,
+        "id": "62211f25b0002e9ca621d103"
+    }
+}
+```
+
+### Request
+
+POST `/api/private/transactions/cash-out/creditcard`
+
+Host: `backend.ducapp.net`
+
+authorization: `Bearer <YOUR_ACCESS_TOKEN>`
+
+x-api-key: `<YOUR_API_KEY>`
+
+### Request Body
+
+
+| NAME                   | TYPE     | DESCRIPTION                                                                  |
+| ---------------------- | -------- | ---------------------------------------------------------------------------- |
+| `service`              | string   | The service identifier (cardUSD, cardCUP)                                    |
+| `amount`               | number   | The the amount to send                                                       |
+| `currency`             | string   | The the currency of the user                                                 |
+| `concept`              | string   | A brief description                                                          |
+| `cardNumber`           | string   | The beneficiary card number                                                  |
+| `cardHolderName`       | string   | The beneficiary card name                                                    |
+| `bankName`             | string   | The beneficiary bank name                                                    |
+| `contactPhone`         | string   | The beneficiary phone number                                                 |
+| `deliveryCurrency`     | string   | The beneficiary card currency                                                |
+| `deliveryCountry`      | string   | The beneficiary country                                                      |
+| `deliveryAmount`       | string   | The amount to receive by the beneficiary                                     |
+| `deliveryCountryCode`  | string   | The beneficiary alpha2 country iso code                                      |
+| `location`             | `object` | Information on the users GPS location at the time of the transaction         |
+| `creditCardNumber`     | string   | Information for payment, credit card number                                  |
+| `creditCardHolderName` | string   | Information for payment, name that appears on the credit card                |
+| `expiryDate`           | string   | Information for payment, expiration date                                     |
+| `cvc`                  | string   | Information for payment, cvc                                                 |
+| `avs_street_name`      | string   | Information for payment, street name                                         |
+| `avs_street_number`    | string   | Information for payment, residence number                                    |
+| `avs_zipcode`          | string   | Information for payment, zip code                                            |
+| `iso_code`             | string   | Information for payment, card currency                                       |
+| `cardCurrency`         | string   | Currency of the sending user                                                 |
+| `currencyCountry`      | string   | Information for payment, country code of the cards currency                  |
+| `currencyCountryName`  | string   | Information for the payment, name of the country of the currency of the card |
+
+
+### location
+
+| NAME        | TYPE   | DESCRIPTION |
+| ----------- | ------ | ----------- |
+| `latitude`  | string | Latitude    |
+| `longitude` | string | Longitude   |
+| `timestamp` | string | Timestamp   |
+
+
+### Response Body
+
+## Home Delivery
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("authorization", "Bearer <YOUR_ACCESS_TOKEN>");
+myHeaders.append("x-api-key", "<YOUR_API_KEY>");
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "service": "deliveryCUP",
+  "amount": 28,
+  "currency": "USD",
+  "concept": "Testing",
+  "deliveryAmount": "2000",
+  "deliveryAddress": "#254 Calle República",
+  "deliveryFirstName": "Roberto",
+  "deliveryID": 95011060454,
+  "deliveryPhone": "+5352532911",
+  "deliveryArea": "Camagüey",
+  "deliveryCountry": "Cuba",
+  "deliveryCurrency": "CUP",
+  "deliveryCountryCode": "CU",
+  "deliveryCity": "Camagüey",
+  "deliveryLastName": "Rodríguez",
+  "deliverySecondLastName": "Morales",
+  "location": {
+    "latitude": "-76.25804853625596",
+    "longitude": "20.888864980079234",
+    "timestamp": "1635185398"
+  },
+  "creditCardNumber": "5454545454545454",
+  "creditCardHolderName": "Test",
+  "expiryDate": "05/22",
+  "cvc": "123",
+  "avs_street_name": "Main Street",
+  "avs_street_number": "508",
+  "avs_zipcode": "80100",
+  "iso_code": "840",
+  "cardCurrency": "USD",
+  "currencyCountry": "US",
+  "currencyCountryName": "United States"
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://backend.ducapp.net/api/private/transactions/cash-out/delivery", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+```python
+import requests
+import json
+
+url = "https://backend.ducapp.net/api/private/transactions/cash-out/delivery"
+
+payload = json.dumps({
+  "service": "deliveryCUP",
+  "amount": 28,
+  "currency": "USD",
+  "concept": "Testing",
+  "deliveryAmount": "2000",
+  "deliveryAddress": "#254 Calle República",
+  "deliveryFirstName": "Roberto",
+  "deliveryID": 95011060454,
+  "deliveryPhone": "+5352532911",
+  "deliveryArea": "Camagüey",
+  "deliveryCountry": "Cuba",
+  "deliveryCurrency": "CUP",
+  "deliveryCountryCode": "CU",
+  "deliveryCity": "Camagüey",
+  "deliveryLastName": "Rodríguez",
+  "deliverySecondLastName": "Morales",
+  "location": {
+    "latitude": "-76.25804853625596",
+    "longitude": "20.888864980079234",
+    "timestamp": "1635185398"
+  },
+  "creditCardNumber": "5454545454545454",
+  "creditCardHolderName": "Test",
+  "expiryDate": "05/22",
+  "cvc": "123",
+  "avs_street_name": "Main Street",
+  "avs_street_number": "508",
+  "avs_zipcode": "80100",
+  "iso_code": "840",
+  "cardCurrency": "USD",
+  "currencyCountry": "US",
+  "currencyCountryName": "United States"
+})
+headers = {
+  'authorization': 'Bearer <YOUR_ACCESS_TOKEN>',
+  'x-api-key': '<YOUR_API_KEY>',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```shell
+curl --location --request POST 'https://backend.ducapp.net/api/private/transactions/cash-out/delivery' \
+--header 'authorization: Bearer <YOUR_ACCESS_TOKEN>' \
+--header 'x-api-key: <YOUR_API_KEY>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "service": "deliveryCUP",
+    "amount": 28,
+    "currency": "USD",
+    "concept": "Testing",
+    "deliveryAmount": "2000",
+    "deliveryAddress": "#254 Calle República",
+    "deliveryFirstName": "Roberto",
+    "deliveryID": 95011060454,
+    "deliveryPhone": "+5352532911",
+    "deliveryArea": "Camagüey",
+    "deliveryCountry": "Cuba",
+    "deliveryCurrency": "CUP",
+    "deliveryCountryCode": "CU",
+    "deliveryCity": "Camagüey",
+    "deliveryLastName": "Rodríguez",
+    "deliverySecondLastName": "Morales",
+    "location": {
+        "latitude": "-76.25804853625596",
+        "longitude": "20.888864980079234",
+        "timestamp": "1635185398"
+    },
+    "creditCardNumber": "5454545454545454",
+    "creditCardHolderName": "Test",
+    "expiryDate": "05/22",
+    "cvc": "123",
+    "avs_street_name": "Main Street",
+    "avs_street_number": "508",
+    "avs_zipcode": "80100",
+    "iso_code": "840",
+    "cardCurrency": "USD",
+    "currencyCountry": "US",
+    "currencyCountryName": "United States"
+}'
+```
+
+> Example Response:
+
+```json
+{
+    "data": {
+        "status": 201,
+        "record": {
+            "transactionAmount": 28,
+            "transactionStatus": "pending",
+            "currency": "USD",
+            "type": "CASH_OUT_TRANSACTION",
+            "images": [],
+            "balanceSender": 0,
+            "balanceReceiver": 0,
+            "_id": "62211d0ab0002e76c321cf6b",
+            "sender": "0x0F673BAF2C67eb6165CC526df5386032d653fbB5",
+            "receiver": "0x946ec5B0fC2B78adaC1fC39DC2eE682ddFc3913E",
+            "owner": "5ebaf91c80b385353b9283dd",
+            "metadata": {
+                "method": "DELIVERY_TRANSACTION",
+                "apiClientId": "621fce78b0002ebdd121bea3",
+                "deliveryLastName": "Rodríguez",
+                "deliverySecondLastName": "Morales",
+                "deliveryPhone": "+5352532911",
+                "deliveryCountry": "Cuba",
+                "deliveryArea": "Camagüey",
+                "deliveryCity": "Camagüey",
+                "deliveryAddress": "#254 Calle República",
+                "deliveryCountryCode": "CU",
+                "deliveryAmount": "2000",
+                "deliveryCurrency": "CUP",
+                "taxRate": 82,
+                "exchangeSpread": 2.5,
+                "marginValue": 1,
+                "feeAmount": 3,
+                "feeAmountInUserCurrency": 3,
+                "deliveryAreaAgent": "",
+                "fromBatch": false
+            },
+            "concept": "Testing",
+            "createdAt": "2022-03-03T19:54:50.410Z",
+            "updatedAt": "2022-03-03T19:54:50.410Z",
+            "transactionID": "AA00287328",
+            "__v": 0,
+            "id": "62211d0ab0002e76c321cf6b"
+        },
+        "payload": {
+            "method": "DELIVERY_TRANSACTION",
+            "_id": "62211d0ab0002ed11c21cf75",
+            "transactionID": "62211d0ab0002e76c321cf6b",
+            "metadata": [
+                {
+                    "key": "apiClientId",
+                    "value": "621fce78b0002ebdd121bea3"
+                },
+                {
+                    "key": "deliveryContact"
+                },
+                {
+                    "key": "deliveryLastName",
+                    "value": "Rodríguez"
+                },
+                {
+                    "key": "deliverySecondLastName",
+                    "value": "Morales"
+                },
+                {
+                    "key": "deliveryCI"
+                },
+                {
+                    "key": "deliveryPhone",
+                    "value": "+5352532911"
+                },
+                {
+                    "key": "deliveryCountry",
+                    "value": "Cuba"
+                },
+                {
+                    "key": "deliveryArea",
+                    "value": "Camagüey"
+                },
+                {
+                    "key": "deliveryZone"
+                },
+                {
+                    "key": "deliveryCity",
+                    "value": "Camagüey"
+                },
+                {
+                    "key": "deliveryAddress",
+                    "value": "#254 Calle República"
+                },
+                {
+                    "key": "deliveryCountryCode",
+                    "value": "CU"
+                },
+                {
+                    "key": "deliveryAmount",
+                    "value": "2000"
+                },
+                {
+                    "key": "deliveryCurrency",
+                    "value": "CUP"
+                },
+                {
+                    "key": "taxRate",
+                    "value": "82"
+                },
+                {
+                    "key": "exchangeSpread",
+                    "value": "2.5"
+                },
+                {
+                    "key": "marginValue",
+                    "value": "1"
+                },
+                {
+                    "key": "feeAmount",
+                    "value": "3"
+                },
+                {
+                    "key": "feeAmountInUserCurrency",
+                    "value": "3"
+                },
+                {
+                    "key": "deliveryAreaAgent",
+                    "value": ""
+                }
+            ],
+            "createdAt": "2022-03-03T19:54:50.512Z",
+            "updatedAt": "2022-03-03T19:54:50.512Z",
+            "__v": 0,
+            "id": "62211d0ab0002ed11c21cf75"
+        }
+    },
+    "transaction": {
+        "transactionAmount": 28,
+        "transactionStatus": "pending",
+        "currency": "USD",
+        "type": "CASH_OUT_TRANSACTION",
+        "images": [],
+        "balanceSender": 0,
+        "balanceReceiver": 0,
+        "_id": "62211d0ab0002e76c321cf6b",
+        "sender": "0x0F673BAF2C67eb6165CC526df5386032d653fbB5",
+        "receiver": "0x946ec5B0fC2B78adaC1fC39DC2eE682ddFc3913E",
+        "owner": "5ebaf91c80b385353b9283dd",
+        "metadata": {
+            "method": "DELIVERY_TRANSACTION",
+            "apiClientId": "621fce78b0002ebdd121bea3",
+            "deliveryLastName": "Rodríguez",
+            "deliverySecondLastName": "Morales",
+            "deliveryPhone": "+5352532911",
+            "deliveryCountry": "Cuba",
+            "deliveryArea": "Camagüey",
+            "deliveryCity": "Camagüey",
+            "deliveryAddress": "#254 Calle República",
+            "deliveryCountryCode": "CU",
+            "deliveryAmount": "2000",
+            "deliveryCurrency": "CUP",
+            "taxRate": 82,
+            "exchangeSpread": 2.5,
+            "marginValue": 1,
+            "feeAmount": 3,
+            "feeAmountInUserCurrency": 3,
+            "deliveryAreaAgent": "",
+            "fromBatch": false
+        },
+        "concept": "Testing",
+        "createdAt": "2022-03-03T19:54:50.410Z",
+        "updatedAt": "2022-03-03T19:54:50.410Z",
+        "transactionID": "AA00287328",
+        "__v": 0,
+        "id": "62211d0ab0002e76c321cf6b"
+    }
+}
+```
+
+### Request 
+
+POST `/api/private/transactions/cash-out/delivery`
+
+Host: `backend.ducapp.net`
+
+authorization: `Bearer <YOUR_ACCESS_TOKEN>`
+
+x-api-key: `<YOUR_API_KEY>`
+
+### Request Body
+
+| NAME                     | TYPE     | DESCRIPTION                                                                  |
+| ------------------------ | -------- | ---------------------------------------------------------------------------- |
+| `service`                | string   | The service identifier (deliveryUSD, deliveryCUP)                            |
+| `amount`                 | number   | The the amount to send                                                       |
+| `currency`               | string   | The the currency of the user                                                 |
+| `concept`                | string   | A brief description                                                          |
+| `deliveryAddress`        | string   | The beneficiarys address                                                     |
+| `deliveryFirstName`      | string   | The beneficiarys first name                                                  |
+| `deliveryID`             | string   | The beneficiarys identification number                                       |
+| `deliveryPhone`          | string   | The beneficiarys phone number                                                |
+| `deliveryCurrency`       | string   | The beneficiarys currency                                                    |
+| `deliveryCountry`        | string   | The beneficiarys country                                                     |
+| `deliveryAmount`         | string   | The amount to receive by the beneficiary                                     |
+| `deliveryArea`           | string   | The beneficiarys province                                                    |
+| `deliveryLastName`       | string   | The beneficiarys lastname                                                    |
+| `deliverySecondLastName` | string   | The beneficiarys second lastname                                             |
+| `deliveryCountryCode`    | string   | The beneficiarys alpha2 country iso code                                     |
+| `location`               | `object` | Information on the users GPS location at the time of the transaction         |
+| `creditCardNumber`       | string   | Information for payment, credit card number                                  |
+| `creditCardHolderName`   | string   | Information for payment, name that appears on the credit card                |
+| `expiryDate`             | string   | Information for payment, expiration date                                     |
+| `cvc`                    | string   | Information for payment, cvc                                                 |
+| `avs_street_name`        | string   | Information for payment, street name                                         |
+| `avs_street_number`      | string   | Information for payment, residence number                                    |
+| `avs_zipcode`            | string   | Information for payment, zip code                                            |
+| `iso_code`               | string   | Information for payment, card currency                                       |
+| `cardCurrency`           | string   | Currency of the sending user                                                 |
+| `currencyCountry`        | string   | Information for payment, country code of the cards currency                  |
+| `currencyCountryName`    | string   | Information for the payment, name of the country of the currency of the card |
+
+
+### location
+
+| NAME        | TYPE   | DESCRIPTION |
+| ----------- | ------ | ----------- |
+| `latitude`  | string | Latitude    |
+| `longitude` | string | Longitude   |
+| `timestamp` | string | Timestamp   |
+
+
+### Response Body
+
+## P2P Transfer
+
+Send money to internal users of the platform.
+
+```shell
+curl --location --request POST 'https://backend.ducapp.net/api/private/transactions/token/p2p' \
+--header 'authorization: Bearer <YOUR_ACCESS_TOKEN>' \
+--header 'x-api-key: <YOUR_API_KEY>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "toAddress": "0x2485EAeF87343A2e51c9E52BDA02D51D9d51202E",
+    "amount": 1,
+    "currency": "USD",
+    "concept": "Testing",
+    "location": {
+        "latitude": "-76.25804853625596",
+        "longitude": "20.888864980079234",
+        "timestamp": "1635185398"
+    },
+    "creditCardNumber": "5454545454545454",
+    "creditCardHolderName": "Test",
+    "expiryDate": "05/22",
+    "cvc": "123",
+    "avs_street_name": "Main Street",
+    "avs_street_number": "508",
+    "avs_zipcode": "80100",
+    "iso_code": "840",
+    "cardCurrency": "USD",
+    "currencyCountry": "US",
+    "currencyCountryName": "United States"
+}
+'
+```
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("authorization", "Bearer <YOUR_ACCESS_TOKEN>");
+myHeaders.append("x-api-key", "<YOUR_API_KEY>");
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "toAddress": "0x2485EAeF87343A2e51c9E52BDA02D51D9d51202E",
+  "amount": 1,
+  "currency": "USD",
+  "concept": "Testing",
+  "location": {
+    "latitude": "-76.25804853625596",
+    "longitude": "20.888864980079234",
+    "timestamp": "1635185398"
+  },
+  "creditCardNumber": "5454545454545454",
+  "creditCardHolderName": "Test",
+  "expiryDate": "05/22",
+  "cvc": "123",
+  "avs_street_name": "Main Street",
+  "avs_street_number": "508",
+  "avs_zipcode": "80100",
+  "iso_code": "840",
+  "cardCurrency": "USD",
+  "currencyCountry": "US",
+  "currencyCountryName": "United States"
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://backend.ducapp.net/api/private/transactions/token/p2p", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+```python
+import requests
+import json
+
+url = "https://backend.ducapp.net/api/private/transactions/token/p2p"
+
+payload = json.dumps({
+  "toAddress": "0x2485EAeF87343A2e51c9E52BDA02D51D9d51202E",
+  "amount": 1,
+  "currency": "USD",
+  "concept": "Testing",
+  "location": {
+    "latitude": "-76.25804853625596",
+    "longitude": "20.888864980079234",
+    "timestamp": "1635185398"
+  },
+  "creditCardNumber": "5454545454545454",
+  "creditCardHolderName": "Test",
+  "expiryDate": "05/22",
+  "cvc": "123",
+  "avs_street_name": "Main Street",
+  "avs_street_number": "508",
+  "avs_zipcode": "80100",
+  "iso_code": "840",
+  "cardCurrency": "USD",
+  "currencyCountry": "US",
+  "currencyCountryName": "United States"
+})
+headers = {
+  'authorization': 'Bearer <YOUR_ACCESS_TOKEN>',
+  'x-api-key': '<YOUR_API_KEY>',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+> Example Response:
+
+```json
+{
+    "data": {
+        "status": 201,
+        "payload": "AA00287326"
+    },
+    "transaction": {
+        "transactionAmount": 1,
+        "transactionStatus": "pending",
+        "currency": "USD",
+        "type": "P2P_TRANSFER",
+        "images": [],
+        "balanceSender": 0,
+        "balanceReceiver": 0,
+        "_id": "622118e8b0002efddb21ce16",
+        "sender": "0x0F673BAF2C67eb6165CC526df5386032d653fbB5",
+        "receiver": "0x2485EAeF87343A2e51c9E52BDA02D51D9d51202E",
+        "owner": "5ebaf91c80b385353b9283dd",
+        "concept": "Testing",
+        "metadata": {
+            "purpose": ""
+        },
+        "processedAt": "2022-03-03T19:37:12.787Z",
+        "createdAt": "2022-03-03T19:37:12.788Z",
+        "updatedAt": "2022-03-03T19:37:12.788Z",
+        "transactionID": "AA00287326",
+        "__v": 0,
+        "id": "622118e8b0002efddb21ce16"
+    }
+}
+```
+
+### Request
+
+POST `/api/private/transactions/token/p2p`
+
+Host: `backend.ducapp.net`
+
+authorization: `Bearer <YOUR_ACCESS_TOKEN>`
+
+x-api-key: `<YOUR_API_KEY>`
+
+### Request Body
+
+| NAME                   | TYPE     | DESCRIPTION                                                                  |
+| ---------------------- | -------- | ---------------------------------------------------------------------------- |
+| `toAddress`            | string   | The receiver wallet address                                                  |
+| `amount`               | number   | The the amount to send                                                       |
+| `currency`             | string   | The the currency of the user                                                 |
+| `concept`              | string   | A brief description                                                          |
+| `location`             | `object` | Information on the users GPS location at the time of the transaction         |
+| `creditCardNumber`     | string   | Information for payment, credit card number                                  |
+| `creditCardHolderName` | string   | Information for payment, name that appears on the credit card                |
+| `expiryDate`           | string   | Information for payment, expiration date                                     |
+| `cvc`                  | string   | Information for payment, cvc                                                 |
+| `avs_street_name`      | string   | Information for payment, street name                                         |
+| `avs_street_number`    | string   | Information for payment, residence number                                    |
+| `avs_zipcode`          | string   | Information for payment, zip code                                            |
+| `iso_code`             | string   | Information for payment, card currency                                       |
+| `cardCurrency`         | string   | Currency of the sending user                                                 |
+| `currencyCountry`      | string   | Information for payment, country code of the cards currency                  |
+| `currencyCountryName`  | string   | Information for the payment, name of the country of the currency of the card |
+
+### location
+
+| NAME        | TYPE   | DESCRIPTION |
+| ----------- | ------ | ----------- |
+| `latitude`  | string | Latitude    |
+| `longitude` | string | Longitude   |
+| `timestamp` | string | Timestamp   |
+
+
+### Response Body
+
+## Email Money Transfer
+
+Send money using an email address
+
+```python
+import requests
+import json
+
+url = "https://backend.ducapp.net/api/private/transactions/cash-out/email"
+
+payload = json.dumps({
+  "amount": 100,
+  "currency": "EUR",
+  "concept": "Testing",
+  "email": "testing2@gmail.com",
+  "location": {
+    "latitude": "-76.25804853625596",
+    "longitude": "20.888864980079234",
+    "timestamp": "1635185398"
+  },
+  "creditCardNumber": "5454545454545454",
+  "creditCardHolderName": "Test",
+  "expiryDate": "05/22",
+  "cvc": "123",
+  "avs_street_name": "Main Street",
+  "avs_street_number": "508",
+  "avs_zipcode": "80100",
+  "iso_code": "840",
+  "cardCurrency": "USD",
+  "currencyCountry": "US",
+  "currencyCountryName": "United States"
+})
+headers = {
+  'authorization': 'Bearer <YOUR_ACCESS_TOKEN>',
+  'x-api-key': '<YOUR_API_KEY>',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("authorization", "Bearer <YOUR_ACCESS_TOKEN>");
+myHeaders.append("x-api-key", "<YOUR_API_KEY>");
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "amount": 100,
+  "currency": "EUR",
+  "concept": "Testing",
+  "email": "testing2@gmail.com",
+  "location": {
+    "latitude": "-76.25804853625596",
+    "longitude": "20.888864980079234",
+    "timestamp": "1635185398"
+  },
+  "creditCardNumber": "5454545454545454",
+  "creditCardHolderName": "Test",
+  "expiryDate": "05/22",
+  "cvc": "123",
+  "avs_street_name": "Main Street",
+  "avs_street_number": "508",
+  "avs_zipcode": "80100",
+  "iso_code": "840",
+  "cardCurrency": "USD",
+  "currencyCountry": "US",
+  "currencyCountryName": "United States"
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://backend.ducapp.net/api/private/transactions/cash-out/email", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+
+```shell
+curl --location --request POST 'https://backend.ducapp.net/api/private/transactions/cash-out/email' \
+--header 'authorization: Bearer <YOUR_ACCESS_TOKEN>' \
+--header 'x-api-key: <YOUR_API_KEY>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "amount": 100,
+    "currency": "EUR",
+    "concept": "Testing",
+    "email": "testing2@gmail.com",
+    "location": {
+        "latitude": "-76.25804853625596",
+        "longitude": "20.888864980079234",
+        "timestamp": "1635185398"
+    },
+    "creditCardNumber": "5454545454545454",
+    "creditCardHolderName": "Test",
+    "expiryDate": "05/22",
+    "cvc": "123",
+    "avs_street_name": "Main Street",
+    "avs_street_number": "508",
+    "avs_zipcode": "80100",
+    "iso_code": "840",
+    "cardCurrency": "USD",
+    "currencyCountry": "US",
+    "currencyCountryName": "United States"
+}'
+```
+
+> Example Response:
+
+```json
+{
+    "data": {
+        "status": 201,
+        "record": {
+            "transactionAmount": 50,
+            "transactionStatus": "pending",
+            "currency": "EUR",
+            "type": "CASH_OUT_TRANSACTION",
+            "images": [],
+            "balanceSender": 0,
+            "balanceReceiver": 0,
+            "_id": "62211829b0002e341d21cddf",
+            "sender": "0x0F673BAF2C67eb6165CC526df5386032d653fbB5",
+            "receiver": "0x946ec5B0fC2B78adaC1fC39DC2eE682ddFc3913E",
+            "owner": "5ebaf91c80b385353b9283dd",
+            "metadata": {
+                "method": "EMAIL_MONEY_TRANSACTION",
+                "apiClientId": "621fce78b0002ebdd121bea3",
+                "codeToAccept": "53fbB5",
+                "emailReferenceNumber": "",
+                "emailDescription": "",
+                "fromBatch": false
+            },
+            "concept": "Testing",
+            "createdAt": "2022-03-03T19:34:01.427Z",
+            "updatedAt": "2022-03-03T19:34:01.427Z",
+            "transactionID": "AA00287325",
+            "__v": 0,
+            "id": "62211829b0002e341d21cddf"
+        },
+        "payload": {
+            "method": "EMAIL_MONEY_TRANSACTION",
+            "_id": "62211829b0002e489021cde9",
+            "transactionID": "62211829b0002e341d21cddf",
+            "metadata": [
+                {
+                    "key": "apiClientId",
+                    "value": "621fce78b0002ebdd121bea3"
+                },
+                {
+                    "key": "emailToSend"
+                },
+                {
+                    "key": "codeToAccept",
+                    "value": "53fbB5"
+                },
+                {
+                    "key": "emailReferenceNumber",
+                    "value": ""
+                },
+                {
+                    "key": "emailDescription",
+                    "value": ""
+                }
+            ],
+            "createdAt": "2022-03-03T19:34:01.509Z",
+            "updatedAt": "2022-03-03T19:34:01.509Z",
+            "__v": 0,
+            "id": "62211829b0002e489021cde9"
+        }
+    },
+    "transaction": {
+        "transactionAmount": 50,
+        "transactionStatus": "pending",
+        "currency": "EUR",
+        "type": "CASH_OUT_TRANSACTION",
+        "images": [],
+        "balanceSender": 0,
+        "balanceReceiver": 0,
+        "_id": "62211829b0002e341d21cddf",
+        "sender": "0x0F673BAF2C67eb6165CC526df5386032d653fbB5",
+        "receiver": "0x946ec5B0fC2B78adaC1fC39DC2eE682ddFc3913E",
+        "owner": "5ebaf91c80b385353b9283dd",
+        "metadata": {
+            "method": "EMAIL_MONEY_TRANSACTION",
+            "apiClientId": "621fce78b0002ebdd121bea3",
+            "codeToAccept": "53fbB5",
+            "emailReferenceNumber": "",
+            "emailDescription": "",
+            "fromBatch": false
+        },
+        "concept": "Testing",
+        "createdAt": "2022-03-03T19:34:01.427Z",
+        "updatedAt": "2022-03-03T19:34:01.427Z",
+        "transactionID": "AA00287325",
+        "__v": 0,
+        "id": "62211829b0002e341d21cddf"
+    }
+}
+```
+
+
+### Request
+
+POST `/api/private/transactions/cash-out/email`
+
+Host: `backend.ducapp.net`
+
+authorization: `Bearer <YOUR_ACCESS_TOKEN>`
+
+x-api-key: `<YOUR_API_KEY>`
+
+### Request Body
+
+| NAME                   | TYPE     | DESCRIPTION                                                                  |
+| ---------------------- | -------- | ---------------------------------------------------------------------------- |
+| `email`                | string   | The destination email                                                        |
+| `amount`               | number   | The the amount to send                                                       |
+| `currency`             | string   | The the currency of the user                                                 |
+| `concept`              | string   | A brief description                                                          |
+| `location`             | `object` | Information on the users GPS location at the time of the transaction         |
+| `creditCardNumber`     | string   | Information for payment, credit card number                                  |
+| `creditCardHolderName` | string   | Information for payment, name that appears on the credit card                |
+| `expiryDate`           | string   | Information for payment, expiration date                                     |
+| `cvc`                  | string   | Information for payment, cvc                                                 |
+| `avs_street_name`      | string   | Information for payment, street name                                         |
+| `avs_street_number`    | string   | Information for payment, residence number                                    |
+| `avs_zipcode`          | string   | Information for payment, zip code                                            |
+| `iso_code`             | string   | Information for payment, card currency                                       |
+| `cardCurrency`         | string   | Currency of the sending user                                                 |
+| `currencyCountry`      | string   | Information for payment, country code of the cards currency                  |
+| `currencyCountryName`  | string   | Information for the payment, name of the country of the currency of the card |
+
+### location
+
+| NAME        | TYPE   | DESCRIPTION |
+| ----------- | ------ | ----------- |
+| `latitude`  | string | Latitude    |
+| `longitude` | string | Longitude   |
+| `timestamp` | string | Timestamp   |
+
+### Response Body
 
 ## Get Exchange Rates
-
 
 ```python
 import requests
@@ -1999,4 +3216,12 @@ Host: `backend.ducapp.net`
 
 ### Request Body
 
-### Response Bodys
+## Get Balance
+
+Get the balance of a wallet.
+
+### Request
+
+### Request Body
+
+### Response Body

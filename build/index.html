@@ -36,6 +36,54 @@
          <div class=dark-box></div>
          <div class=content>
             <h1 id="endpoints">Endpoints</h1>
+            <h2 id="api-health">API Health</h2>
+            <p>Check if the API is active.</p>
+            <pre class="highlight shell"><code>curl --location --request GET &#x27;https://backend.ducwallet.com/api/health&#x27;</code></pre><pre class="highlight python"><code><span class="hljs-keyword">import</span> requests
+
+url = <span class="hljs-string">&quot;https://backend.ducwallet.com/api/health&quot;</span>
+
+payload={}
+headers = {}
+
+response = requests.request(<span class="hljs-string">&quot;GET&quot;</span>, url, headers=headers, data=payload)
+
+<span class="hljs-built_in">print</span>(response.text)</code></pre><pre class="highlight javascript"><code><span class="hljs-keyword">var</span> requestOptions = {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+  <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;follow&#x27;</span>
+};
+
+<span class="hljs-title function_">fetch</span>(<span class="hljs-string">&quot;https://backend.ducwallet.com/api/health&quot;</span>, requestOptions)
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">text</span>())
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result))
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;error&#x27;</span>, error));</code></pre>
+            <blockquote>
+               <p>Example Response:</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">true</span>
+<span class="hljs-punctuation">}</span></code></pre>
+            <h3 id="request">Request</h3>
+            <p>POST <code>/api/health</code></p>
+            <p>Host: <code>backend.ducapp.net</code></p>
+            <h3 id="request-body">Request Body</h3>
+            <p>No request body</p>
+            <h3 id="response-body">Response Body</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>status</code></td>
+                     <td>boolean</td>
+                     <td>Status of API.</td>
+                  </tr>
+               </tbody>
+            </table>
             <h2 id="login">Login</h2>
             <pre class="highlight shell"><code>curl --location --request POST &#x27;https://backend.ducapp.net/api/auth/login&#x27; \
 --header &#x27;x-api-key: &lt;YOUR_API_KEY&gt;&#x27; \
@@ -89,12 +137,12 @@ response = requests.request(<span class="hljs-string">&quot;POST&quot;</span>, u
     <span class="hljs-attr">&quot;accessToken&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTlkNGQ0MjA1MGUyOTIxNTYwMmQzNGMiLCJmaXJzdE5hbWUiOiJIYWJsYXgiLCJsYXN0TmFtZSI6IkhhYmxheCIsImVtYWlsIjoiaW5mb0BoYWJsYXMuY29tIiwicGhvbmUiOiIrMTMwNTkwMzI2ODIiLCJ3YWxsZXRBZGRyZXNzIjoiMHhkOTUzOTkzRDA5OTBiZGVkZDJCQzJlNWRFNUQ1N2MyM0EyRTMyNmQwIiwiZGVmYXVsdEN1cnJlbmN5IjoiVVNEIiwicm9sZXMiOlsiNWRlMDMwMmE1OGU1MzAwMDBkZTBkZDJjIl0sImxhbmd1YWdlIjoiRU4iLCJsYXN0TG9naW5BdCI6IjIwMjEtMTItMjhUMTU6NTg6MzYuNjA1WiIsInN0YXR1cyI6IkFjdGl2YXRlZCIsInZlcmlmaWVkIjpmYWxzZSwidHJ1c3RMZXZlbCI6NywiaXNCbG9ja2VkIjpmYWxzZSwibG9naW5GYWlsQ291bnQiOjAsImJsb2NrZWRVbnRpbCI6bnVsbCwiaWF0IjoxNjQzOTI2MDcwLCJleHAiOjE2NDM5NDQwNzB9.fNp9TwXvn5964ZaKeDaI221lwHQJx4CFVMp8iO--e_o&quot;</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">&quot;refreshToken&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWZyZXNoVG9rZW4iOiJvU3d6NVppRGdXVmlSMjF2QUc2MmlYeDY3eSIsImlhdCI6MTY0MzkyNjA3MCwiZXhwIjoxNjQzOTgwMDcwfQ.nxcSprbfrGiIeOCypj0V0xtOSNW7tcmtpRwq2A-CXCk&quot;</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <h3 id="request">Request</h3>
+            <h3 id="request-1">Request</h3>
             <p>POST <code>/api/auth/login</code></p>
             <p>Host: <code>backend.ducapp.net</code></p>
             <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
             <p>Content-Type: <code>application/json</code></p>
-            <h3 id="request-body">Request Body</h3>
+            <h3 id="request-body-1">Request Body</h3>
             <table>
                <thead>
                   <tr>
@@ -116,7 +164,7 @@ response = requests.request(<span class="hljs-string">&quot;POST&quot;</span>, u
                   </tr>
                </tbody>
             </table>
-            <h3 id="response">Response</h3>
+            <h3 id="response-body-1">Response Body</h3>
             <table>
                <thead>
                   <tr>
@@ -317,7 +365,7 @@ response = requests.request(<span class="hljs-string">&quot;POST&quot;</span>, u
         <span class="hljs-attr">&quot;trustLevel&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
         <span class="hljs-attr">&quot;isVirgin&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">true</span><span class="hljs-punctuation">,</span>
         <span class="hljs-attr">&quot;transactionCount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
-        <span class="hljs-attr">&quot;beneficiaries&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;beneficiary&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
         <span class="hljs-attr">&quot;requestOTPCount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
         <span class="hljs-attr">&quot;firstRequestOTPAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">null</span><span class="hljs-punctuation">,</span>
         <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;61bc2d893c83e9346b64d456&quot;</span><span class="hljs-punctuation">,</span>
@@ -448,12 +496,12 @@ response = requests.request(<span class="hljs-string">&quot;POST&quot;</span>, u
     <span class="hljs-attr">&quot;accessToken&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ…&quot;</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">&quot;refreshToken&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…&quot;</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <h3 id="request-1">Request</h3>
+            <h3 id="request-2">Request</h3>
             <p>POST <code>/api/private/users/register</code></p>
             <p>Host: <code>backend.ducapp.net</code></p>
             <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
             <p>Content-Type: <code>application/json</code></p>
-            <h3 id="request-body-1">Request Body</h3>
+            <h3 id="request-body-2">Request Body</h3>
             <table>
                <thead>
                   <tr>
@@ -607,7 +655,7 @@ response = requests.request(<span class="hljs-string">&quot;POST&quot;</span>, u
                   </tr>
                </tbody>
             </table>
-            <h3 id="response-1">Response</h3>
+            <h3 id="response-body-2">Response Body</h3>
             <h2 id="verify-user">Verify User</h2>
             <pre class="highlight python"><code><span class="hljs-keyword">import</span> requests
 <span class="hljs-keyword">import</span> json
@@ -685,7 +733,7 @@ myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-str
         <span class="hljs-attr">&quot;trustLevel&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
         <span class="hljs-attr">&quot;isVirgin&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">true</span><span class="hljs-punctuation">,</span>
         <span class="hljs-attr">&quot;transactionCount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
-        <span class="hljs-attr">&quot;beneficiaries&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;beneficiary&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
         <span class="hljs-attr">&quot;requestOTPCount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
         <span class="hljs-attr">&quot;firstRequestOTPAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">null</span><span class="hljs-punctuation">,</span>
         <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;61c0da6a7623905113d7683e&quot;</span><span class="hljs-punctuation">,</span>
@@ -859,12 +907,12 @@ myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-str
         <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;61c0da6a7623905113d7683e&quot;</span>
     <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <h3 id="request-2">Request</h3>
+            <h3 id="request-3">Request</h3>
             <p>POST <code>/api/private/users/verify</code></p>
             <p>Host: <code>backend.ducapp.net</code></p>
             <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
             <p>Content-Type: <code>application/json</code></p>
-            <h3 id="request-body-2">Request Body</h3>
+            <h3 id="request-body-3">Request Body</h3>
             <table>
                <thead>
                   <tr>
@@ -886,7 +934,7 @@ myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-str
                   </tr>
                </tbody>
             </table>
-            <h3 id="response-2">Response</h3>
+            <h3 id="response-body-3">Response Body</h3>
             <table>
                <thead>
                   <tr>
@@ -964,14 +1012,14 @@ myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-str
         <span class="hljs-attr">&quot;page&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1&quot;</span>
     <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <h3 id="request-3">Request</h3>
+            <h3 id="request-4">Request</h3>
             <p>GET <code>/api/private/transactions/cash-out/countries</code> </p>
             <p>Host: <code>backend.ducapp.net</code></p>
             <p>authorization: <code>Bearer &lt;YOUR_ACCESS_TOKEN&gt;</code></p>
             <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
-            <h3 id="request-body-3">Request Body</h3>
+            <h3 id="request-body-4">Request Body</h3>
             <p>Empty</p>
-            <h3 id="response-3">Response</h3>
+            <h3 id="response-body-4">Response Body</h3>
             <table>
                <thead>
                   <tr>
@@ -1091,13 +1139,13 @@ response = requests.request(<span class="hljs-string">&quot;GET&quot;</span>, ur
         <span class="hljs-attr">&quot;page&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1&quot;</span>
     <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <h3 id="request-4">Request</h3>
+            <h3 id="request-5">Request</h3>
             <p>GET <code>/api/private/transactions/cash-out/services</code></p>
             <p>Host: <code>backend.ducapp.net</code></p>
             <p>authorization: <code>Bearer &lt;YOUR_ACCESS_TOKEN&gt;</code></p>
             <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
             <p>Content-Type: <code>application/json</code></p>
-            <h3 id="request-body-4">Request Body</h3>
+            <h3 id="request-body-5">Request Body</h3>
             <table>
                <thead>
                   <tr>
@@ -1114,7 +1162,7 @@ response = requests.request(<span class="hljs-string">&quot;GET&quot;</span>, ur
                   </tr>
                </tbody>
             </table>
-            <h3 id="response-4">Response</h3>
+            <h3 id="response-body-5">Response Body</h3>
             <table>
                <thead>
                   <tr>
@@ -1256,13 +1304,13 @@ myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-str
         <span class="hljs-attr">&quot;page&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1&quot;</span>
     <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <h3 id="request-5">Request</h3>
+            <h3 id="request-6">Request</h3>
             <p>GET <code>/api/private/transactions/cash-out/payers</code></p>
             <p>Host: <code>backend.ducapp.net</code></p>
             <p>authorization: <code>Bearer &lt;YOUR_ACCESS_TOKEN&gt;</code></p>
             <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
             <p>Content-Type: <code>application/json</code></p>
-            <h3 id="request-body-5">Request Body</h3>
+            <h3 id="request-body-6">Request Body</h3>
             <table>
                <thead>
                   <tr>
@@ -1284,7 +1332,7 @@ myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-str
                   </tr>
                </tbody>
             </table>
-            <h3 id="response-5">Response</h3>
+            <h3 id="response-body-6">Response Body</h3>
             <table>
                <thead>
                   <tr>
@@ -1495,13 +1543,13 @@ myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-str
         <span class="hljs-punctuation">}</span>
     <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <h3 id="request-6">Request</h3>
+            <h3 id="request-7">Request</h3>
             <p>POST <code>/api/private/transactions/cash-out/request-send</code></p>
             <p>Host: <code>backend.ducapp.net</code></p>
             <p>authorization: <code>Bearer &lt;YOUR_ACCESS_TOKEN&gt;</code></p>
             <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
             <p>Content-Type: <code>application/json</code></p>
-            <h3 id="request-body-6">Request Body</h3>
+            <h3 id="request-body-7">Request Body</h3>
             <table>
                <thead>
                   <tr>
@@ -1538,7 +1586,7 @@ myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-str
                   </tr>
                </tbody>
             </table>
-            <h3 id="response-6">Response</h3>
+            <h3 id="response-body-7">Response Body</h3>
             <table>
                <thead>
                   <tr>
@@ -1821,13 +1869,13 @@ response = requests.request(<span class="hljs-string">&quot;POST&quot;</span>, u
         <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;61c0e32d7623907918d768bf&quot;</span>
     <span class="hljs-punctuation">}</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <h3 id="request-7">Request</h3>
+            <h3 id="request-8">Request</h3>
             <p>POST <code>/api/private/transactions/cash-out/confirm-send</code></p>
             <p>Host: <code>backend.ducapp.net</code></p>
             <p>authorization: <code>Bearer &lt;YOUR_ACCESS_TOKEN&gt;</code></p>
             <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
             <p>Content-Type: <code>application/json</code></p>
-            <h3 id="request-body-7">Request Body</h3>
+            <h3 id="request-body-8">Request Body</h3>
             <table>
                <thead>
                   <tr>
@@ -1996,7 +2044,7 @@ response = requests.request(<span class="hljs-string">&quot;POST&quot;</span>, u
                   </tr>
                </tbody>
             </table>
-            <h3 id="response-7">Response</h3>
+            <h3 id="response-body-8">Response Body</h3>
             <table>
                <thead>
                   <tr>
@@ -2018,7 +2066,7 @@ response = requests.request(<span class="hljs-string">&quot;POST&quot;</span>, u
                   </tr>
                </tbody>
             </table>
-            <h2 id="dynamic-payment">Dynamic Payment</h2>
+            <h2 id="create-dynamic-payment">Create Dynamic Payment</h2>
             <pre class="highlight python"><code><span class="hljs-keyword">import</span> requests
 <span class="hljs-keyword">import</span> json
 
@@ -2114,14 +2162,14 @@ myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-str
     <span class="hljs-attr">&quot;expiresAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-02-04T14:05:36.728Z&quot;</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;61fbe1309cd18d1d35320d77&quot;</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <h3 id="request-8">Request</h3>
+            <h3 id="request-9">Request</h3>
             <p>POST <code>/api/private/payments/order</code></p>
             <p>Host: <code>backend.ducapp.net</code></p>
             <p>authorization: <code>Bearer &lt;YOUR_ACCESS_TOKEN&gt;</code></p>
             <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
             <p>Content-Type: <code>application/json</code></p>
-            <h3 id="request-body-8">Request Body</h3>
-            <h3 id="response-8">Response</h3>
+            <h3 id="request-body-9">Request Body</h3>
+            <h3 id="response-body-9">Response Body</h3>
             <h2 id="transaction-status">Transaction Status</h2>
             <h2 id="get-order-details">Get Order Details</h2>
             <pre class="highlight javascript"><code><span class="hljs-keyword">var</span> myHeaders = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Headers</span>();
@@ -2178,14 +2226,1525 @@ response = requests.request(<span class="hljs-string">&quot;GET&quot;</span>, ur
     <span class="hljs-attr">&quot;expiresAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-02-04T14:05:36.728Z&quot;</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;61fbe1309cd18d1d35320d77&quot;</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <h3 id="request-9">Request</h3>
+            <h3 id="request-10">Request</h3>
             <p>GET <code>/api/private/payments/order/{order_id}</code></p>
             <p>Host: <code>backend.ducapp.net</code></p>
             <p>authorization: <code>Bearer &lt;YOUR_ACCESS_TOKEN&gt;</code></p>
             <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
-            <h3 id="request-body-9">Request Body</h3>
+            <h3 id="request-body-10">Request Body</h3>
             <p>Empty, but the order_id is required. Eg. <code>/api/private/payments/order/OI0000000021</code></p>
-            <h3 id="response-9">Response</h3>
+            <h3 id="response-body-10">Response Body</h3>
+            <h2 id="send-to-credit-card">Send to Credit Card</h2>
+            <p>Send money to MLC/CUP Cuban card.</p>
+            <pre class="highlight python"><code><span class="hljs-keyword">import</span> requests
+<span class="hljs-keyword">import</span> json
+
+url = <span class="hljs-string">&quot;https://backend.ducapp.net/api/private/transactions/cash-out/creditcard&quot;</span>
+
+payload = json.dumps({
+  <span class="hljs-string">&quot;service&quot;</span>: <span class="hljs-string">&quot;cardCUP&quot;</span>,
+  <span class="hljs-string">&quot;amount&quot;</span>: <span class="hljs-number">100</span>,
+  <span class="hljs-string">&quot;currency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;concept&quot;</span>: <span class="hljs-string">&quot;Tesing&quot;</span>,
+  <span class="hljs-string">&quot;cardNumber&quot;</span>: <span class="hljs-string">&quot;9204757871131683&quot;</span>,
+  <span class="hljs-string">&quot;cardHolderName&quot;</span>: <span class="hljs-string">&quot;John Doe&quot;</span>,
+  <span class="hljs-string">&quot;bankName&quot;</span>: <span class="hljs-string">&quot;Banco Metropolitano&quot;</span>,
+  <span class="hljs-string">&quot;contactPhone&quot;</span>: <span class="hljs-string">&quot;+5352532911&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCurrency&quot;</span>: <span class="hljs-string">&quot;CUC&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCountry&quot;</span>: <span class="hljs-string">&quot;Cuba&quot;</span>,
+  <span class="hljs-string">&quot;deliveryAmount&quot;</span>: <span class="hljs-string">&quot;8000&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCountryCode&quot;</span>: <span class="hljs-string">&quot;CU&quot;</span>,
+  <span class="hljs-string">&quot;location&quot;</span>: {
+    <span class="hljs-string">&quot;latitude&quot;</span>: <span class="hljs-string">&quot;-76.25804853625596&quot;</span>,
+    <span class="hljs-string">&quot;longitude&quot;</span>: <span class="hljs-string">&quot;20.888864980079234&quot;</span>,
+    <span class="hljs-string">&quot;timestamp&quot;</span>: <span class="hljs-string">&quot;1635185398&quot;</span>
+  },
+  <span class="hljs-string">&quot;creditCardNumber&quot;</span>: <span class="hljs-string">&quot;5454545454545454&quot;</span>,
+  <span class="hljs-string">&quot;creditCardHolderName&quot;</span>: <span class="hljs-string">&quot;Test&quot;</span>,
+  <span class="hljs-string">&quot;expiryDate&quot;</span>: <span class="hljs-string">&quot;05/22&quot;</span>,
+  <span class="hljs-string">&quot;cvc&quot;</span>: <span class="hljs-string">&quot;123&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_name&quot;</span>: <span class="hljs-string">&quot;Main Street&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_number&quot;</span>: <span class="hljs-string">&quot;508&quot;</span>,
+  <span class="hljs-string">&quot;avs_zipcode&quot;</span>: <span class="hljs-string">&quot;80100&quot;</span>,
+  <span class="hljs-string">&quot;iso_code&quot;</span>: <span class="hljs-string">&quot;840&quot;</span>,
+  <span class="hljs-string">&quot;cardCurrency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountry&quot;</span>: <span class="hljs-string">&quot;US&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountryName&quot;</span>: <span class="hljs-string">&quot;United States&quot;</span>
+})
+headers = {
+  <span class="hljs-string">&#x27;authorization&#x27;</span>: <span class="hljs-string">&#x27;Bearer &lt;YOUR_ACCESS_TOKEN&gt;&#x27;</span>,
+  <span class="hljs-string">&#x27;x-api-key&#x27;</span>: <span class="hljs-string">&#x27;&lt;YOUR_API_KEY&gt;&#x27;</span>,
+  <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>
+}
+
+response = requests.request(<span class="hljs-string">&quot;POST&quot;</span>, url, headers=headers, data=payload)
+
+<span class="hljs-built_in">print</span>(response.text)</code></pre><pre class="highlight shell"><code>curl --location --request POST &#x27;https://backend.ducapp.net/api/private/transactions/cash-out/creditcard&#x27; \
+--header &#x27;authorization: Bearer &lt;YOUR_ACCESS_TOKEN&gt;&#x27; \
+--header &#x27;x-api-key: &lt;YOUR_API_KEY&gt;&#x27; \
+--header &#x27;Content-Type: application/json&#x27; \
+--data-raw &#x27;{
+    &quot;service&quot;: &quot;cardCUP&quot;,
+    &quot;amount&quot;: 100,
+    &quot;currency&quot;: &quot;USD&quot;,
+    &quot;concept&quot;: &quot;Tesing&quot;,
+    &quot;cardNumber&quot;: &quot;9204757871131683&quot;,
+    &quot;cardHolderName&quot;: &quot;John Doe&quot;,
+    &quot;bankName&quot;: &quot;Banco Metropolitano&quot;,
+    &quot;contactPhone&quot;: &quot;+5352532911&quot;,
+    &quot;deliveryCurrency&quot;: &quot;CUC&quot;,
+    &quot;deliveryCountry&quot;: &quot;Cuba&quot;,
+    &quot;deliveryAmount&quot;: &quot;8000&quot;,
+    &quot;deliveryCountryCode&quot;: &quot;CU&quot;,
+    &quot;location&quot;: {
+        &quot;latitude&quot;: &quot;-76.25804853625596&quot;,
+        &quot;longitude&quot;: &quot;20.888864980079234&quot;,
+        &quot;timestamp&quot;: &quot;1635185398&quot;
+    },
+    &quot;creditCardNumber&quot;: &quot;5454545454545454&quot;,
+    &quot;creditCardHolderName&quot;: &quot;Test&quot;,
+    &quot;expiryDate&quot;: &quot;05/22&quot;,
+    &quot;cvc&quot;: &quot;123&quot;,
+    &quot;avs_street_name&quot;: &quot;Main Street&quot;,
+    &quot;avs_street_number&quot;: &quot;508&quot;,
+    &quot;avs_zipcode&quot;: &quot;80100&quot;,
+    &quot;iso_code&quot;: &quot;840&quot;,
+    &quot;cardCurrency&quot;: &quot;USD&quot;,
+    &quot;currencyCountry&quot;: &quot;US&quot;,
+    &quot;currencyCountryName&quot;: &quot;United States&quot;
+}&#x27;</code></pre><pre class="highlight javascript"><code><span class="hljs-keyword">var</span> myHeaders = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Headers</span>();
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;authorization&quot;</span>, <span class="hljs-string">&quot;Bearer &lt;YOUR_ACCESS_TOKEN&gt;&quot;</span>);
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;x-api-key&quot;</span>, <span class="hljs-string">&quot;&lt;YOUR_API_KEY&gt;&quot;</span>);
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span>);
+
+<span class="hljs-keyword">var</span> raw = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>({
+  <span class="hljs-string">&quot;service&quot;</span>: <span class="hljs-string">&quot;cardCUP&quot;</span>,
+  <span class="hljs-string">&quot;amount&quot;</span>: <span class="hljs-number">100</span>,
+  <span class="hljs-string">&quot;currency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;concept&quot;</span>: <span class="hljs-string">&quot;Tesing&quot;</span>,
+  <span class="hljs-string">&quot;cardNumber&quot;</span>: <span class="hljs-string">&quot;9204757871131683&quot;</span>,
+  <span class="hljs-string">&quot;cardHolderName&quot;</span>: <span class="hljs-string">&quot;John Doe&quot;</span>,
+  <span class="hljs-string">&quot;bankName&quot;</span>: <span class="hljs-string">&quot;Banco Metropolitano&quot;</span>,
+  <span class="hljs-string">&quot;contactPhone&quot;</span>: <span class="hljs-string">&quot;+5352532911&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCurrency&quot;</span>: <span class="hljs-string">&quot;CUC&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCountry&quot;</span>: <span class="hljs-string">&quot;Cuba&quot;</span>,
+  <span class="hljs-string">&quot;deliveryAmount&quot;</span>: <span class="hljs-string">&quot;8000&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCountryCode&quot;</span>: <span class="hljs-string">&quot;CU&quot;</span>,
+  <span class="hljs-string">&quot;location&quot;</span>: {
+    <span class="hljs-string">&quot;latitude&quot;</span>: <span class="hljs-string">&quot;-76.25804853625596&quot;</span>,
+    <span class="hljs-string">&quot;longitude&quot;</span>: <span class="hljs-string">&quot;20.888864980079234&quot;</span>,
+    <span class="hljs-string">&quot;timestamp&quot;</span>: <span class="hljs-string">&quot;1635185398&quot;</span>
+  },
+  <span class="hljs-string">&quot;creditCardNumber&quot;</span>: <span class="hljs-string">&quot;5454545454545454&quot;</span>,
+  <span class="hljs-string">&quot;creditCardHolderName&quot;</span>: <span class="hljs-string">&quot;Test&quot;</span>,
+  <span class="hljs-string">&quot;expiryDate&quot;</span>: <span class="hljs-string">&quot;05/22&quot;</span>,
+  <span class="hljs-string">&quot;cvc&quot;</span>: <span class="hljs-string">&quot;123&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_name&quot;</span>: <span class="hljs-string">&quot;Main Street&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_number&quot;</span>: <span class="hljs-string">&quot;508&quot;</span>,
+  <span class="hljs-string">&quot;avs_zipcode&quot;</span>: <span class="hljs-string">&quot;80100&quot;</span>,
+  <span class="hljs-string">&quot;iso_code&quot;</span>: <span class="hljs-string">&quot;840&quot;</span>,
+  <span class="hljs-string">&quot;cardCurrency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountry&quot;</span>: <span class="hljs-string">&quot;US&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountryName&quot;</span>: <span class="hljs-string">&quot;United States&quot;</span>
+});
+
+<span class="hljs-keyword">var</span> requestOptions = {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+  <span class="hljs-attr">headers</span>: myHeaders,
+  <span class="hljs-attr">body</span>: raw,
+  <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;follow&#x27;</span>
+};
+
+<span class="hljs-title function_">fetch</span>(<span class="hljs-string">&quot;https://backend.ducapp.net/api/private/transactions/cash-out/creditcard&quot;</span>, requestOptions)
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">text</span>())
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result))
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;error&#x27;</span>, error));</code></pre>
+            <blockquote>
+               <p>Example Response:</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">201</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;record&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;transactionAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">106</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;transactionStatus&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;pending&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;currency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;USD&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CASH_OUT_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;images&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;balanceSender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;balanceReceiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211f25b0002e9ca621d103&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;sender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x0F673BAF2C67eb6165CC526df5386032d653fbB5&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;receiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x946ec5B0fC2B78adaC1fC39DC2eE682ddFc3913E&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;owner&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;5ebaf91c80b385353b9283dd&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;metadata&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+                <span class="hljs-attr">&quot;method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CREDIT_CARD_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;apiClientId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;621fce78b0002ebdd121bea3&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;cardNumber&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;9204757871131683&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;cardHolderName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;John Doe&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;bankName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Banco Metropolitano&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;contactPhone&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;+5352532911&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryCountry&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Cuba&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryCountryCode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CU&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;8000&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryCurrency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CUP&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;taxRate&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">82</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;exchangeSpread&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2.5</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;marginValue&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;feeAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">6</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;feeAmountInUserCurrency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">6</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;fromBatch&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">false</span>
+            <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;concept&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Tesing&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;createdAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T20:03:49.041Z&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;updatedAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T20:03:49.041Z&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;transactionID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;AA00287334&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;__v&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211f25b0002e9ca621d103&quot;</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;payload&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CREDIT_CARD_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211f25b0002e7ba721d10d&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;transactionID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211f25b0002e9ca621d103&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;metadata&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;apiClientId&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;621fce78b0002ebdd121bea3&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cardNumber&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;9204757871131683&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;cardHolderName&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;John Doe&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;verifyCardNumber&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;bankName&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Banco Metropolitano&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;contactPhone&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;+5352532911&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryCountry&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Cuba&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryCountryCode&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CU&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryAmount&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;8000&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryCurrency&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CUP&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;taxRate&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;82&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;exchangeSpread&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2.5&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;marginValue&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;feeAmount&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;6&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;feeAmountInUserCurrency&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;6&quot;</span>
+                <span class="hljs-punctuation">}</span>
+            <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;createdAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T20:03:49.103Z&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;updatedAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T20:03:49.103Z&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;__v&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211f25b0002e7ba721d10d&quot;</span>
+        <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;transaction&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;transactionAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">106</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;transactionStatus&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;pending&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;currency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;USD&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CASH_OUT_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;images&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;balanceSender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;balanceReceiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211f25b0002e9ca621d103&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;sender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x0F673BAF2C67eb6165CC526df5386032d653fbB5&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;receiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x946ec5B0fC2B78adaC1fC39DC2eE682ddFc3913E&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;owner&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;5ebaf91c80b385353b9283dd&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;metadata&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CREDIT_CARD_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;apiClientId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;621fce78b0002ebdd121bea3&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;cardNumber&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;9204757871131683&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;cardHolderName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;John Doe&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;bankName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Banco Metropolitano&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;contactPhone&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;+5352532911&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryCountry&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Cuba&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryCountryCode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CU&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;8000&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryCurrency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CUP&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;taxRate&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">82</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;exchangeSpread&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2.5</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;marginValue&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;feeAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">6</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;feeAmountInUserCurrency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">6</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;fromBatch&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">false</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;concept&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Tesing&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;createdAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T20:03:49.041Z&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;updatedAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T20:03:49.041Z&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;transactionID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;AA00287334&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;__v&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211f25b0002e9ca621d103&quot;</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
+            <h3 id="request-11">Request</h3>
+            <p>POST <code>/api/private/transactions/cash-out/creditcard</code></p>
+            <p>Host: <code>backend.ducapp.net</code></p>
+            <p>authorization: <code>Bearer &lt;YOUR_ACCESS_TOKEN&gt;</code></p>
+            <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
+            <h3 id="request-body-11">Request Body</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>service</code></td>
+                     <td>string</td>
+                     <td>The service identifier (cardUSD, cardCUP)</td>
+                  </tr>
+                  <tr>
+                     <td><code>amount</code></td>
+                     <td>number</td>
+                     <td>The the amount to send</td>
+                  </tr>
+                  <tr>
+                     <td><code>currency</code></td>
+                     <td>string</td>
+                     <td>The the currency of the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>concept</code></td>
+                     <td>string</td>
+                     <td>A brief description</td>
+                  </tr>
+                  <tr>
+                     <td><code>cardNumber</code></td>
+                     <td>string</td>
+                     <td>The beneficiary card number</td>
+                  </tr>
+                  <tr>
+                     <td><code>cardHolderName</code></td>
+                     <td>string</td>
+                     <td>The beneficiary card name</td>
+                  </tr>
+                  <tr>
+                     <td><code>bankName</code></td>
+                     <td>string</td>
+                     <td>The beneficiary bank name</td>
+                  </tr>
+                  <tr>
+                     <td><code>contactPhone</code></td>
+                     <td>string</td>
+                     <td>The beneficiary phone number</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryCurrency</code></td>
+                     <td>string</td>
+                     <td>The beneficiary card currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryCountry</code></td>
+                     <td>string</td>
+                     <td>The beneficiary country</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryAmount</code></td>
+                     <td>string</td>
+                     <td>The amount to receive by the beneficiary</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryCountryCode</code></td>
+                     <td>string</td>
+                     <td>The beneficiary alpha2 country iso code</td>
+                  </tr>
+                  <tr>
+                     <td><code>location</code></td>
+                     <td><code>object</code></td>
+                     <td>Information on the users GPS location at the time of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardNumber</code></td>
+                     <td>string</td>
+                     <td>Information for payment, credit card number</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardHolderName</code></td>
+                     <td>string</td>
+                     <td>Information for payment, name that appears on the credit card</td>
+                  </tr>
+                  <tr>
+                     <td><code>expiryDate</code></td>
+                     <td>string</td>
+                     <td>Information for payment, expiration date</td>
+                  </tr>
+                  <tr>
+                     <td><code>cvc</code></td>
+                     <td>string</td>
+                     <td>Information for payment, cvc</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_name</code></td>
+                     <td>string</td>
+                     <td>Information for payment, street name</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_number</code></td>
+                     <td>string</td>
+                     <td>Information for payment, residence number</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_zipcode</code></td>
+                     <td>string</td>
+                     <td>Information for payment, zip code</td>
+                  </tr>
+                  <tr>
+                     <td><code>iso_code</code></td>
+                     <td>string</td>
+                     <td>Information for payment, card currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>cardCurrency</code></td>
+                     <td>string</td>
+                     <td>Currency of the sending user</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountry</code></td>
+                     <td>string</td>
+                     <td>Information for payment, country code of the cards currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountryName</code></td>
+                     <td>string</td>
+                     <td>Information for the payment, name of the country of the currency of the card</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="location-1">location</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>latitude</code></td>
+                     <td>string</td>
+                     <td>Latitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>longitude</code></td>
+                     <td>string</td>
+                     <td>Longitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>timestamp</code></td>
+                     <td>string</td>
+                     <td>Timestamp</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-body-11">Response Body</h3>
+            <h2 id="home-delivery">Home Delivery</h2>
+            <pre class="highlight javascript"><code><span class="hljs-keyword">var</span> myHeaders = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Headers</span>();
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;authorization&quot;</span>, <span class="hljs-string">&quot;Bearer &lt;YOUR_ACCESS_TOKEN&gt;&quot;</span>);
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;x-api-key&quot;</span>, <span class="hljs-string">&quot;&lt;YOUR_API_KEY&gt;&quot;</span>);
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span>);
+
+<span class="hljs-keyword">var</span> raw = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>({
+  <span class="hljs-string">&quot;service&quot;</span>: <span class="hljs-string">&quot;deliveryCUP&quot;</span>,
+  <span class="hljs-string">&quot;amount&quot;</span>: <span class="hljs-number">28</span>,
+  <span class="hljs-string">&quot;currency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;concept&quot;</span>: <span class="hljs-string">&quot;Testing&quot;</span>,
+  <span class="hljs-string">&quot;deliveryAmount&quot;</span>: <span class="hljs-string">&quot;2000&quot;</span>,
+  <span class="hljs-string">&quot;deliveryAddress&quot;</span>: <span class="hljs-string">&quot;#254 Calle República&quot;</span>,
+  <span class="hljs-string">&quot;deliveryFirstName&quot;</span>: <span class="hljs-string">&quot;Roberto&quot;</span>,
+  <span class="hljs-string">&quot;deliveryID&quot;</span>: <span class="hljs-number">95011060454</span>,
+  <span class="hljs-string">&quot;deliveryPhone&quot;</span>: <span class="hljs-string">&quot;+5352532911&quot;</span>,
+  <span class="hljs-string">&quot;deliveryArea&quot;</span>: <span class="hljs-string">&quot;Camagüey&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCountry&quot;</span>: <span class="hljs-string">&quot;Cuba&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCurrency&quot;</span>: <span class="hljs-string">&quot;CUP&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCountryCode&quot;</span>: <span class="hljs-string">&quot;CU&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCity&quot;</span>: <span class="hljs-string">&quot;Camagüey&quot;</span>,
+  <span class="hljs-string">&quot;deliveryLastName&quot;</span>: <span class="hljs-string">&quot;Rodríguez&quot;</span>,
+  <span class="hljs-string">&quot;deliverySecondLastName&quot;</span>: <span class="hljs-string">&quot;Morales&quot;</span>,
+  <span class="hljs-string">&quot;location&quot;</span>: {
+    <span class="hljs-string">&quot;latitude&quot;</span>: <span class="hljs-string">&quot;-76.25804853625596&quot;</span>,
+    <span class="hljs-string">&quot;longitude&quot;</span>: <span class="hljs-string">&quot;20.888864980079234&quot;</span>,
+    <span class="hljs-string">&quot;timestamp&quot;</span>: <span class="hljs-string">&quot;1635185398&quot;</span>
+  },
+  <span class="hljs-string">&quot;creditCardNumber&quot;</span>: <span class="hljs-string">&quot;5454545454545454&quot;</span>,
+  <span class="hljs-string">&quot;creditCardHolderName&quot;</span>: <span class="hljs-string">&quot;Test&quot;</span>,
+  <span class="hljs-string">&quot;expiryDate&quot;</span>: <span class="hljs-string">&quot;05/22&quot;</span>,
+  <span class="hljs-string">&quot;cvc&quot;</span>: <span class="hljs-string">&quot;123&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_name&quot;</span>: <span class="hljs-string">&quot;Main Street&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_number&quot;</span>: <span class="hljs-string">&quot;508&quot;</span>,
+  <span class="hljs-string">&quot;avs_zipcode&quot;</span>: <span class="hljs-string">&quot;80100&quot;</span>,
+  <span class="hljs-string">&quot;iso_code&quot;</span>: <span class="hljs-string">&quot;840&quot;</span>,
+  <span class="hljs-string">&quot;cardCurrency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountry&quot;</span>: <span class="hljs-string">&quot;US&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountryName&quot;</span>: <span class="hljs-string">&quot;United States&quot;</span>
+});
+
+<span class="hljs-keyword">var</span> requestOptions = {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+  <span class="hljs-attr">headers</span>: myHeaders,
+  <span class="hljs-attr">body</span>: raw,
+  <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;follow&#x27;</span>
+};
+
+<span class="hljs-title function_">fetch</span>(<span class="hljs-string">&quot;https://backend.ducapp.net/api/private/transactions/cash-out/delivery&quot;</span>, requestOptions)
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">text</span>())
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result))
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;error&#x27;</span>, error));</code></pre><pre class="highlight python"><code><span class="hljs-keyword">import</span> requests
+<span class="hljs-keyword">import</span> json
+
+url = <span class="hljs-string">&quot;https://backend.ducapp.net/api/private/transactions/cash-out/delivery&quot;</span>
+
+payload = json.dumps({
+  <span class="hljs-string">&quot;service&quot;</span>: <span class="hljs-string">&quot;deliveryCUP&quot;</span>,
+  <span class="hljs-string">&quot;amount&quot;</span>: <span class="hljs-number">28</span>,
+  <span class="hljs-string">&quot;currency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;concept&quot;</span>: <span class="hljs-string">&quot;Testing&quot;</span>,
+  <span class="hljs-string">&quot;deliveryAmount&quot;</span>: <span class="hljs-string">&quot;2000&quot;</span>,
+  <span class="hljs-string">&quot;deliveryAddress&quot;</span>: <span class="hljs-string">&quot;#254 Calle República&quot;</span>,
+  <span class="hljs-string">&quot;deliveryFirstName&quot;</span>: <span class="hljs-string">&quot;Roberto&quot;</span>,
+  <span class="hljs-string">&quot;deliveryID&quot;</span>: <span class="hljs-number">95011060454</span>,
+  <span class="hljs-string">&quot;deliveryPhone&quot;</span>: <span class="hljs-string">&quot;+5352532911&quot;</span>,
+  <span class="hljs-string">&quot;deliveryArea&quot;</span>: <span class="hljs-string">&quot;Camagüey&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCountry&quot;</span>: <span class="hljs-string">&quot;Cuba&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCurrency&quot;</span>: <span class="hljs-string">&quot;CUP&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCountryCode&quot;</span>: <span class="hljs-string">&quot;CU&quot;</span>,
+  <span class="hljs-string">&quot;deliveryCity&quot;</span>: <span class="hljs-string">&quot;Camagüey&quot;</span>,
+  <span class="hljs-string">&quot;deliveryLastName&quot;</span>: <span class="hljs-string">&quot;Rodríguez&quot;</span>,
+  <span class="hljs-string">&quot;deliverySecondLastName&quot;</span>: <span class="hljs-string">&quot;Morales&quot;</span>,
+  <span class="hljs-string">&quot;location&quot;</span>: {
+    <span class="hljs-string">&quot;latitude&quot;</span>: <span class="hljs-string">&quot;-76.25804853625596&quot;</span>,
+    <span class="hljs-string">&quot;longitude&quot;</span>: <span class="hljs-string">&quot;20.888864980079234&quot;</span>,
+    <span class="hljs-string">&quot;timestamp&quot;</span>: <span class="hljs-string">&quot;1635185398&quot;</span>
+  },
+  <span class="hljs-string">&quot;creditCardNumber&quot;</span>: <span class="hljs-string">&quot;5454545454545454&quot;</span>,
+  <span class="hljs-string">&quot;creditCardHolderName&quot;</span>: <span class="hljs-string">&quot;Test&quot;</span>,
+  <span class="hljs-string">&quot;expiryDate&quot;</span>: <span class="hljs-string">&quot;05/22&quot;</span>,
+  <span class="hljs-string">&quot;cvc&quot;</span>: <span class="hljs-string">&quot;123&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_name&quot;</span>: <span class="hljs-string">&quot;Main Street&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_number&quot;</span>: <span class="hljs-string">&quot;508&quot;</span>,
+  <span class="hljs-string">&quot;avs_zipcode&quot;</span>: <span class="hljs-string">&quot;80100&quot;</span>,
+  <span class="hljs-string">&quot;iso_code&quot;</span>: <span class="hljs-string">&quot;840&quot;</span>,
+  <span class="hljs-string">&quot;cardCurrency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountry&quot;</span>: <span class="hljs-string">&quot;US&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountryName&quot;</span>: <span class="hljs-string">&quot;United States&quot;</span>
+})
+headers = {
+  <span class="hljs-string">&#x27;authorization&#x27;</span>: <span class="hljs-string">&#x27;Bearer &lt;YOUR_ACCESS_TOKEN&gt;&#x27;</span>,
+  <span class="hljs-string">&#x27;x-api-key&#x27;</span>: <span class="hljs-string">&#x27;&lt;YOUR_API_KEY&gt;&#x27;</span>,
+  <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>
+}
+
+response = requests.request(<span class="hljs-string">&quot;POST&quot;</span>, url, headers=headers, data=payload)
+
+<span class="hljs-built_in">print</span>(response.text)</code></pre><pre class="highlight shell"><code>curl --location --request POST &#x27;https://backend.ducapp.net/api/private/transactions/cash-out/delivery&#x27; \
+--header &#x27;authorization: Bearer &lt;YOUR_ACCESS_TOKEN&gt;&#x27; \
+--header &#x27;x-api-key: &lt;YOUR_API_KEY&gt;&#x27; \
+--header &#x27;Content-Type: application/json&#x27; \
+--data-raw &#x27;{
+    &quot;service&quot;: &quot;deliveryCUP&quot;,
+    &quot;amount&quot;: 28,
+    &quot;currency&quot;: &quot;USD&quot;,
+    &quot;concept&quot;: &quot;Testing&quot;,
+    &quot;deliveryAmount&quot;: &quot;2000&quot;,
+    &quot;deliveryAddress&quot;: &quot;#254 Calle República&quot;,
+    &quot;deliveryFirstName&quot;: &quot;Roberto&quot;,
+    &quot;deliveryID&quot;: 95011060454,
+    &quot;deliveryPhone&quot;: &quot;+5352532911&quot;,
+    &quot;deliveryArea&quot;: &quot;Camagüey&quot;,
+    &quot;deliveryCountry&quot;: &quot;Cuba&quot;,
+    &quot;deliveryCurrency&quot;: &quot;CUP&quot;,
+    &quot;deliveryCountryCode&quot;: &quot;CU&quot;,
+    &quot;deliveryCity&quot;: &quot;Camagüey&quot;,
+    &quot;deliveryLastName&quot;: &quot;Rodríguez&quot;,
+    &quot;deliverySecondLastName&quot;: &quot;Morales&quot;,
+    &quot;location&quot;: {
+        &quot;latitude&quot;: &quot;-76.25804853625596&quot;,
+        &quot;longitude&quot;: &quot;20.888864980079234&quot;,
+        &quot;timestamp&quot;: &quot;1635185398&quot;
+    },
+    &quot;creditCardNumber&quot;: &quot;5454545454545454&quot;,
+    &quot;creditCardHolderName&quot;: &quot;Test&quot;,
+    &quot;expiryDate&quot;: &quot;05/22&quot;,
+    &quot;cvc&quot;: &quot;123&quot;,
+    &quot;avs_street_name&quot;: &quot;Main Street&quot;,
+    &quot;avs_street_number&quot;: &quot;508&quot;,
+    &quot;avs_zipcode&quot;: &quot;80100&quot;,
+    &quot;iso_code&quot;: &quot;840&quot;,
+    &quot;cardCurrency&quot;: &quot;USD&quot;,
+    &quot;currencyCountry&quot;: &quot;US&quot;,
+    &quot;currencyCountryName&quot;: &quot;United States&quot;
+}&#x27;</code></pre>
+            <blockquote>
+               <p>Example Response:</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">201</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;record&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;transactionAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">28</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;transactionStatus&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;pending&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;currency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;USD&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CASH_OUT_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;images&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;balanceSender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;balanceReceiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211d0ab0002e76c321cf6b&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;sender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x0F673BAF2C67eb6165CC526df5386032d653fbB5&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;receiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x946ec5B0fC2B78adaC1fC39DC2eE682ddFc3913E&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;owner&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;5ebaf91c80b385353b9283dd&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;metadata&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+                <span class="hljs-attr">&quot;method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;DELIVERY_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;apiClientId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;621fce78b0002ebdd121bea3&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryLastName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Rodríguez&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliverySecondLastName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Morales&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryPhone&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;+5352532911&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryCountry&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Cuba&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryArea&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Camagüey&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryCity&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Camagüey&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryAddress&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;#254 Calle República&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryCountryCode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CU&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2000&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryCurrency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CUP&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;taxRate&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">82</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;exchangeSpread&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2.5</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;marginValue&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;feeAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;feeAmountInUserCurrency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;deliveryAreaAgent&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;fromBatch&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">false</span>
+            <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;concept&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Testing&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;createdAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:54:50.410Z&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;updatedAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:54:50.410Z&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;transactionID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;AA00287328&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;__v&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211d0ab0002e76c321cf6b&quot;</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;payload&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;DELIVERY_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211d0ab0002ed11c21cf75&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;transactionID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211d0ab0002e76c321cf6b&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;metadata&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;apiClientId&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;621fce78b0002ebdd121bea3&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryContact&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryLastName&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Rodríguez&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliverySecondLastName&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Morales&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryCI&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryPhone&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;+5352532911&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryCountry&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Cuba&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryArea&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Camagüey&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryZone&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryCity&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Camagüey&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryAddress&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;#254 Calle República&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryCountryCode&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CU&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryAmount&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2000&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryCurrency&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CUP&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;taxRate&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;82&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;exchangeSpread&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2.5&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;marginValue&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;feeAmount&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;3&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;feeAmountInUserCurrency&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;3&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;deliveryAreaAgent&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span>
+                <span class="hljs-punctuation">}</span>
+            <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;createdAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:54:50.512Z&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;updatedAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:54:50.512Z&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;__v&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211d0ab0002ed11c21cf75&quot;</span>
+        <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;transaction&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;transactionAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">28</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;transactionStatus&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;pending&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;currency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;USD&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CASH_OUT_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;images&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;balanceSender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;balanceReceiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211d0ab0002e76c321cf6b&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;sender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x0F673BAF2C67eb6165CC526df5386032d653fbB5&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;receiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x946ec5B0fC2B78adaC1fC39DC2eE682ddFc3913E&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;owner&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;5ebaf91c80b385353b9283dd&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;metadata&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;DELIVERY_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;apiClientId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;621fce78b0002ebdd121bea3&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryLastName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Rodríguez&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliverySecondLastName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Morales&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryPhone&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;+5352532911&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryCountry&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Cuba&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryArea&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Camagüey&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryCity&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Camagüey&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryAddress&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;#254 Calle República&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryCountryCode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CU&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2000&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryCurrency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CUP&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;taxRate&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">82</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;exchangeSpread&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2.5</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;marginValue&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;feeAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;feeAmountInUserCurrency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;deliveryAreaAgent&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;fromBatch&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">false</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;concept&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Testing&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;createdAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:54:50.410Z&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;updatedAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:54:50.410Z&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;transactionID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;AA00287328&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;__v&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211d0ab0002e76c321cf6b&quot;</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
+            <h3 id="request-12">Request</h3>
+            <p>POST <code>/api/private/transactions/cash-out/delivery</code></p>
+            <p>Host: <code>backend.ducapp.net</code></p>
+            <p>authorization: <code>Bearer &lt;YOUR_ACCESS_TOKEN&gt;</code></p>
+            <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
+            <h3 id="request-body-12">Request Body</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>service</code></td>
+                     <td>string</td>
+                     <td>The service identifier (deliveryUSD, deliveryCUP)</td>
+                  </tr>
+                  <tr>
+                     <td><code>amount</code></td>
+                     <td>number</td>
+                     <td>The the amount to send</td>
+                  </tr>
+                  <tr>
+                     <td><code>currency</code></td>
+                     <td>string</td>
+                     <td>The the currency of the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>concept</code></td>
+                     <td>string</td>
+                     <td>A brief description</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryAddress</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys address</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryFirstName</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys first name</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryID</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys identification number</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryPhone</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys phone number</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryCurrency</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryCountry</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys country</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryAmount</code></td>
+                     <td>string</td>
+                     <td>The amount to receive by the beneficiary</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryArea</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys province</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryLastName</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys lastname</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliverySecondLastName</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys second lastname</td>
+                  </tr>
+                  <tr>
+                     <td><code>deliveryCountryCode</code></td>
+                     <td>string</td>
+                     <td>The beneficiarys alpha2 country iso code</td>
+                  </tr>
+                  <tr>
+                     <td><code>location</code></td>
+                     <td><code>object</code></td>
+                     <td>Information on the users GPS location at the time of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardNumber</code></td>
+                     <td>string</td>
+                     <td>Information for payment, credit card number</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardHolderName</code></td>
+                     <td>string</td>
+                     <td>Information for payment, name that appears on the credit card</td>
+                  </tr>
+                  <tr>
+                     <td><code>expiryDate</code></td>
+                     <td>string</td>
+                     <td>Information for payment, expiration date</td>
+                  </tr>
+                  <tr>
+                     <td><code>cvc</code></td>
+                     <td>string</td>
+                     <td>Information for payment, cvc</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_name</code></td>
+                     <td>string</td>
+                     <td>Information for payment, street name</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_number</code></td>
+                     <td>string</td>
+                     <td>Information for payment, residence number</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_zipcode</code></td>
+                     <td>string</td>
+                     <td>Information for payment, zip code</td>
+                  </tr>
+                  <tr>
+                     <td><code>iso_code</code></td>
+                     <td>string</td>
+                     <td>Information for payment, card currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>cardCurrency</code></td>
+                     <td>string</td>
+                     <td>Currency of the sending user</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountry</code></td>
+                     <td>string</td>
+                     <td>Information for payment, country code of the cards currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountryName</code></td>
+                     <td>string</td>
+                     <td>Information for the payment, name of the country of the currency of the card</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="location-2">location</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>latitude</code></td>
+                     <td>string</td>
+                     <td>Latitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>longitude</code></td>
+                     <td>string</td>
+                     <td>Longitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>timestamp</code></td>
+                     <td>string</td>
+                     <td>Timestamp</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-body-12">Response Body</h3>
+            <h2 id="p2p-transfer">P2P Transfer</h2>
+            <p>Send money to internal users of the platform.</p>
+            <pre class="highlight shell"><code>curl --location --request POST &#x27;https://backend.ducapp.net/api/private/transactions/token/p2p&#x27; \
+--header &#x27;authorization: Bearer &lt;YOUR_ACCESS_TOKEN&gt;&#x27; \
+--header &#x27;x-api-key: &lt;YOUR_API_KEY&gt;&#x27; \
+--header &#x27;Content-Type: application/json&#x27; \
+--data-raw &#x27;{
+    &quot;toAddress&quot;: &quot;0x2485EAeF87343A2e51c9E52BDA02D51D9d51202E&quot;,
+    &quot;amount&quot;: 1,
+    &quot;currency&quot;: &quot;USD&quot;,
+    &quot;concept&quot;: &quot;Testing&quot;,
+    &quot;location&quot;: {
+        &quot;latitude&quot;: &quot;-76.25804853625596&quot;,
+        &quot;longitude&quot;: &quot;20.888864980079234&quot;,
+        &quot;timestamp&quot;: &quot;1635185398&quot;
+    },
+    &quot;creditCardNumber&quot;: &quot;5454545454545454&quot;,
+    &quot;creditCardHolderName&quot;: &quot;Test&quot;,
+    &quot;expiryDate&quot;: &quot;05/22&quot;,
+    &quot;cvc&quot;: &quot;123&quot;,
+    &quot;avs_street_name&quot;: &quot;Main Street&quot;,
+    &quot;avs_street_number&quot;: &quot;508&quot;,
+    &quot;avs_zipcode&quot;: &quot;80100&quot;,
+    &quot;iso_code&quot;: &quot;840&quot;,
+    &quot;cardCurrency&quot;: &quot;USD&quot;,
+    &quot;currencyCountry&quot;: &quot;US&quot;,
+    &quot;currencyCountryName&quot;: &quot;United States&quot;
+}
+&#x27;</code></pre><pre class="highlight javascript"><code><span class="hljs-keyword">var</span> myHeaders = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Headers</span>();
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;authorization&quot;</span>, <span class="hljs-string">&quot;Bearer &lt;YOUR_ACCESS_TOKEN&gt;&quot;</span>);
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;x-api-key&quot;</span>, <span class="hljs-string">&quot;&lt;YOUR_API_KEY&gt;&quot;</span>);
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span>);
+
+<span class="hljs-keyword">var</span> raw = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>({
+  <span class="hljs-string">&quot;toAddress&quot;</span>: <span class="hljs-string">&quot;0x2485EAeF87343A2e51c9E52BDA02D51D9d51202E&quot;</span>,
+  <span class="hljs-string">&quot;amount&quot;</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-string">&quot;currency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;concept&quot;</span>: <span class="hljs-string">&quot;Testing&quot;</span>,
+  <span class="hljs-string">&quot;location&quot;</span>: {
+    <span class="hljs-string">&quot;latitude&quot;</span>: <span class="hljs-string">&quot;-76.25804853625596&quot;</span>,
+    <span class="hljs-string">&quot;longitude&quot;</span>: <span class="hljs-string">&quot;20.888864980079234&quot;</span>,
+    <span class="hljs-string">&quot;timestamp&quot;</span>: <span class="hljs-string">&quot;1635185398&quot;</span>
+  },
+  <span class="hljs-string">&quot;creditCardNumber&quot;</span>: <span class="hljs-string">&quot;5454545454545454&quot;</span>,
+  <span class="hljs-string">&quot;creditCardHolderName&quot;</span>: <span class="hljs-string">&quot;Test&quot;</span>,
+  <span class="hljs-string">&quot;expiryDate&quot;</span>: <span class="hljs-string">&quot;05/22&quot;</span>,
+  <span class="hljs-string">&quot;cvc&quot;</span>: <span class="hljs-string">&quot;123&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_name&quot;</span>: <span class="hljs-string">&quot;Main Street&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_number&quot;</span>: <span class="hljs-string">&quot;508&quot;</span>,
+  <span class="hljs-string">&quot;avs_zipcode&quot;</span>: <span class="hljs-string">&quot;80100&quot;</span>,
+  <span class="hljs-string">&quot;iso_code&quot;</span>: <span class="hljs-string">&quot;840&quot;</span>,
+  <span class="hljs-string">&quot;cardCurrency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountry&quot;</span>: <span class="hljs-string">&quot;US&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountryName&quot;</span>: <span class="hljs-string">&quot;United States&quot;</span>
+});
+
+<span class="hljs-keyword">var</span> requestOptions = {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+  <span class="hljs-attr">headers</span>: myHeaders,
+  <span class="hljs-attr">body</span>: raw,
+  <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;follow&#x27;</span>
+};
+
+<span class="hljs-title function_">fetch</span>(<span class="hljs-string">&quot;https://backend.ducapp.net/api/private/transactions/token/p2p&quot;</span>, requestOptions)
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">text</span>())
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result))
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;error&#x27;</span>, error));</code></pre><pre class="highlight python"><code><span class="hljs-keyword">import</span> requests
+<span class="hljs-keyword">import</span> json
+
+url = <span class="hljs-string">&quot;https://backend.ducapp.net/api/private/transactions/token/p2p&quot;</span>
+
+payload = json.dumps({
+  <span class="hljs-string">&quot;toAddress&quot;</span>: <span class="hljs-string">&quot;0x2485EAeF87343A2e51c9E52BDA02D51D9d51202E&quot;</span>,
+  <span class="hljs-string">&quot;amount&quot;</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-string">&quot;currency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;concept&quot;</span>: <span class="hljs-string">&quot;Testing&quot;</span>,
+  <span class="hljs-string">&quot;location&quot;</span>: {
+    <span class="hljs-string">&quot;latitude&quot;</span>: <span class="hljs-string">&quot;-76.25804853625596&quot;</span>,
+    <span class="hljs-string">&quot;longitude&quot;</span>: <span class="hljs-string">&quot;20.888864980079234&quot;</span>,
+    <span class="hljs-string">&quot;timestamp&quot;</span>: <span class="hljs-string">&quot;1635185398&quot;</span>
+  },
+  <span class="hljs-string">&quot;creditCardNumber&quot;</span>: <span class="hljs-string">&quot;5454545454545454&quot;</span>,
+  <span class="hljs-string">&quot;creditCardHolderName&quot;</span>: <span class="hljs-string">&quot;Test&quot;</span>,
+  <span class="hljs-string">&quot;expiryDate&quot;</span>: <span class="hljs-string">&quot;05/22&quot;</span>,
+  <span class="hljs-string">&quot;cvc&quot;</span>: <span class="hljs-string">&quot;123&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_name&quot;</span>: <span class="hljs-string">&quot;Main Street&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_number&quot;</span>: <span class="hljs-string">&quot;508&quot;</span>,
+  <span class="hljs-string">&quot;avs_zipcode&quot;</span>: <span class="hljs-string">&quot;80100&quot;</span>,
+  <span class="hljs-string">&quot;iso_code&quot;</span>: <span class="hljs-string">&quot;840&quot;</span>,
+  <span class="hljs-string">&quot;cardCurrency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountry&quot;</span>: <span class="hljs-string">&quot;US&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountryName&quot;</span>: <span class="hljs-string">&quot;United States&quot;</span>
+})
+headers = {
+  <span class="hljs-string">&#x27;authorization&#x27;</span>: <span class="hljs-string">&#x27;Bearer &lt;YOUR_ACCESS_TOKEN&gt;&#x27;</span>,
+  <span class="hljs-string">&#x27;x-api-key&#x27;</span>: <span class="hljs-string">&#x27;&lt;YOUR_API_KEY&gt;&#x27;</span>,
+  <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>
+}
+
+response = requests.request(<span class="hljs-string">&quot;POST&quot;</span>, url, headers=headers, data=payload)
+
+<span class="hljs-built_in">print</span>(response.text)</code></pre>
+            <blockquote>
+               <p>Example Response:</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">201</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;payload&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;AA00287326&quot;</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;transaction&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;transactionAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;transactionStatus&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;pending&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;currency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;USD&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;P2P_TRANSFER&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;images&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;balanceSender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;balanceReceiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;622118e8b0002efddb21ce16&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;sender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x0F673BAF2C67eb6165CC526df5386032d653fbB5&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;receiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x2485EAeF87343A2e51c9E52BDA02D51D9d51202E&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;owner&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;5ebaf91c80b385353b9283dd&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;concept&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Testing&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;metadata&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;purpose&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;processedAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:37:12.787Z&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;createdAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:37:12.788Z&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;updatedAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:37:12.788Z&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;transactionID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;AA00287326&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;__v&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;622118e8b0002efddb21ce16&quot;</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
+            <h3 id="request-13">Request</h3>
+            <p>POST <code>/api/private/transactions/token/p2p</code></p>
+            <p>Host: <code>backend.ducapp.net</code></p>
+            <p>authorization: <code>Bearer &lt;YOUR_ACCESS_TOKEN&gt;</code></p>
+            <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
+            <h3 id="request-body-13">Request Body</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>toAddress</code></td>
+                     <td>string</td>
+                     <td>The receiver wallet address</td>
+                  </tr>
+                  <tr>
+                     <td><code>amount</code></td>
+                     <td>number</td>
+                     <td>The the amount to send</td>
+                  </tr>
+                  <tr>
+                     <td><code>currency</code></td>
+                     <td>string</td>
+                     <td>The the currency of the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>concept</code></td>
+                     <td>string</td>
+                     <td>A brief description</td>
+                  </tr>
+                  <tr>
+                     <td><code>location</code></td>
+                     <td><code>object</code></td>
+                     <td>Information on the users GPS location at the time of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardNumber</code></td>
+                     <td>string</td>
+                     <td>Information for payment, credit card number</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardHolderName</code></td>
+                     <td>string</td>
+                     <td>Information for payment, name that appears on the credit card</td>
+                  </tr>
+                  <tr>
+                     <td><code>expiryDate</code></td>
+                     <td>string</td>
+                     <td>Information for payment, expiration date</td>
+                  </tr>
+                  <tr>
+                     <td><code>cvc</code></td>
+                     <td>string</td>
+                     <td>Information for payment, cvc</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_name</code></td>
+                     <td>string</td>
+                     <td>Information for payment, street name</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_number</code></td>
+                     <td>string</td>
+                     <td>Information for payment, residence number</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_zipcode</code></td>
+                     <td>string</td>
+                     <td>Information for payment, zip code</td>
+                  </tr>
+                  <tr>
+                     <td><code>iso_code</code></td>
+                     <td>string</td>
+                     <td>Information for payment, card currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>cardCurrency</code></td>
+                     <td>string</td>
+                     <td>Currency of the sending user</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountry</code></td>
+                     <td>string</td>
+                     <td>Information for payment, country code of the cards currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountryName</code></td>
+                     <td>string</td>
+                     <td>Information for the payment, name of the country of the currency of the card</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="location-3">location</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>latitude</code></td>
+                     <td>string</td>
+                     <td>Latitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>longitude</code></td>
+                     <td>string</td>
+                     <td>Longitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>timestamp</code></td>
+                     <td>string</td>
+                     <td>Timestamp</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-body-13">Response Body</h3>
+            <h2 id="email-money-transfer">Email Money Transfer</h2>
+            <p>Send money using an email address</p>
+            <pre class="highlight python"><code><span class="hljs-keyword">import</span> requests
+<span class="hljs-keyword">import</span> json
+
+url = <span class="hljs-string">&quot;https://backend.ducapp.net/api/private/transactions/cash-out/email&quot;</span>
+
+payload = json.dumps({
+  <span class="hljs-string">&quot;amount&quot;</span>: <span class="hljs-number">100</span>,
+  <span class="hljs-string">&quot;currency&quot;</span>: <span class="hljs-string">&quot;EUR&quot;</span>,
+  <span class="hljs-string">&quot;concept&quot;</span>: <span class="hljs-string">&quot;Testing&quot;</span>,
+  <span class="hljs-string">&quot;email&quot;</span>: <span class="hljs-string">&quot;testing2@gmail.com&quot;</span>,
+  <span class="hljs-string">&quot;location&quot;</span>: {
+    <span class="hljs-string">&quot;latitude&quot;</span>: <span class="hljs-string">&quot;-76.25804853625596&quot;</span>,
+    <span class="hljs-string">&quot;longitude&quot;</span>: <span class="hljs-string">&quot;20.888864980079234&quot;</span>,
+    <span class="hljs-string">&quot;timestamp&quot;</span>: <span class="hljs-string">&quot;1635185398&quot;</span>
+  },
+  <span class="hljs-string">&quot;creditCardNumber&quot;</span>: <span class="hljs-string">&quot;5454545454545454&quot;</span>,
+  <span class="hljs-string">&quot;creditCardHolderName&quot;</span>: <span class="hljs-string">&quot;Test&quot;</span>,
+  <span class="hljs-string">&quot;expiryDate&quot;</span>: <span class="hljs-string">&quot;05/22&quot;</span>,
+  <span class="hljs-string">&quot;cvc&quot;</span>: <span class="hljs-string">&quot;123&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_name&quot;</span>: <span class="hljs-string">&quot;Main Street&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_number&quot;</span>: <span class="hljs-string">&quot;508&quot;</span>,
+  <span class="hljs-string">&quot;avs_zipcode&quot;</span>: <span class="hljs-string">&quot;80100&quot;</span>,
+  <span class="hljs-string">&quot;iso_code&quot;</span>: <span class="hljs-string">&quot;840&quot;</span>,
+  <span class="hljs-string">&quot;cardCurrency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountry&quot;</span>: <span class="hljs-string">&quot;US&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountryName&quot;</span>: <span class="hljs-string">&quot;United States&quot;</span>
+})
+headers = {
+  <span class="hljs-string">&#x27;authorization&#x27;</span>: <span class="hljs-string">&#x27;Bearer &lt;YOUR_ACCESS_TOKEN&gt;&#x27;</span>,
+  <span class="hljs-string">&#x27;x-api-key&#x27;</span>: <span class="hljs-string">&#x27;&lt;YOUR_API_KEY&gt;&#x27;</span>,
+  <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>
+}
+
+response = requests.request(<span class="hljs-string">&quot;POST&quot;</span>, url, headers=headers, data=payload)
+
+<span class="hljs-built_in">print</span>(response.text)</code></pre><pre class="highlight javascript"><code><span class="hljs-keyword">var</span> myHeaders = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Headers</span>();
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;authorization&quot;</span>, <span class="hljs-string">&quot;Bearer &lt;YOUR_ACCESS_TOKEN&gt;&quot;</span>);
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;x-api-key&quot;</span>, <span class="hljs-string">&quot;&lt;YOUR_API_KEY&gt;&quot;</span>);
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span>);
+
+<span class="hljs-keyword">var</span> raw = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>({
+  <span class="hljs-string">&quot;amount&quot;</span>: <span class="hljs-number">100</span>,
+  <span class="hljs-string">&quot;currency&quot;</span>: <span class="hljs-string">&quot;EUR&quot;</span>,
+  <span class="hljs-string">&quot;concept&quot;</span>: <span class="hljs-string">&quot;Testing&quot;</span>,
+  <span class="hljs-string">&quot;email&quot;</span>: <span class="hljs-string">&quot;testing2@gmail.com&quot;</span>,
+  <span class="hljs-string">&quot;location&quot;</span>: {
+    <span class="hljs-string">&quot;latitude&quot;</span>: <span class="hljs-string">&quot;-76.25804853625596&quot;</span>,
+    <span class="hljs-string">&quot;longitude&quot;</span>: <span class="hljs-string">&quot;20.888864980079234&quot;</span>,
+    <span class="hljs-string">&quot;timestamp&quot;</span>: <span class="hljs-string">&quot;1635185398&quot;</span>
+  },
+  <span class="hljs-string">&quot;creditCardNumber&quot;</span>: <span class="hljs-string">&quot;5454545454545454&quot;</span>,
+  <span class="hljs-string">&quot;creditCardHolderName&quot;</span>: <span class="hljs-string">&quot;Test&quot;</span>,
+  <span class="hljs-string">&quot;expiryDate&quot;</span>: <span class="hljs-string">&quot;05/22&quot;</span>,
+  <span class="hljs-string">&quot;cvc&quot;</span>: <span class="hljs-string">&quot;123&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_name&quot;</span>: <span class="hljs-string">&quot;Main Street&quot;</span>,
+  <span class="hljs-string">&quot;avs_street_number&quot;</span>: <span class="hljs-string">&quot;508&quot;</span>,
+  <span class="hljs-string">&quot;avs_zipcode&quot;</span>: <span class="hljs-string">&quot;80100&quot;</span>,
+  <span class="hljs-string">&quot;iso_code&quot;</span>: <span class="hljs-string">&quot;840&quot;</span>,
+  <span class="hljs-string">&quot;cardCurrency&quot;</span>: <span class="hljs-string">&quot;USD&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountry&quot;</span>: <span class="hljs-string">&quot;US&quot;</span>,
+  <span class="hljs-string">&quot;currencyCountryName&quot;</span>: <span class="hljs-string">&quot;United States&quot;</span>
+});
+
+<span class="hljs-keyword">var</span> requestOptions = {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+  <span class="hljs-attr">headers</span>: myHeaders,
+  <span class="hljs-attr">body</span>: raw,
+  <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;follow&#x27;</span>
+};
+
+<span class="hljs-title function_">fetch</span>(<span class="hljs-string">&quot;https://backend.ducapp.net/api/private/transactions/cash-out/email&quot;</span>, requestOptions)
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">text</span>())
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result))
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;error&#x27;</span>, error));</code></pre><pre class="highlight shell"><code>curl --location --request POST &#x27;https://backend.ducapp.net/api/private/transactions/cash-out/email&#x27; \
+--header &#x27;authorization: Bearer &lt;YOUR_ACCESS_TOKEN&gt;&#x27; \
+--header &#x27;x-api-key: &lt;YOUR_API_KEY&gt;&#x27; \
+--header &#x27;Content-Type: application/json&#x27; \
+--data-raw &#x27;{
+    &quot;amount&quot;: 100,
+    &quot;currency&quot;: &quot;EUR&quot;,
+    &quot;concept&quot;: &quot;Testing&quot;,
+    &quot;email&quot;: &quot;testing2@gmail.com&quot;,
+    &quot;location&quot;: {
+        &quot;latitude&quot;: &quot;-76.25804853625596&quot;,
+        &quot;longitude&quot;: &quot;20.888864980079234&quot;,
+        &quot;timestamp&quot;: &quot;1635185398&quot;
+    },
+    &quot;creditCardNumber&quot;: &quot;5454545454545454&quot;,
+    &quot;creditCardHolderName&quot;: &quot;Test&quot;,
+    &quot;expiryDate&quot;: &quot;05/22&quot;,
+    &quot;cvc&quot;: &quot;123&quot;,
+    &quot;avs_street_name&quot;: &quot;Main Street&quot;,
+    &quot;avs_street_number&quot;: &quot;508&quot;,
+    &quot;avs_zipcode&quot;: &quot;80100&quot;,
+    &quot;iso_code&quot;: &quot;840&quot;,
+    &quot;cardCurrency&quot;: &quot;USD&quot;,
+    &quot;currencyCountry&quot;: &quot;US&quot;,
+    &quot;currencyCountryName&quot;: &quot;United States&quot;
+}&#x27;</code></pre>
+            <blockquote>
+               <p>Example Response:</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">201</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;record&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;transactionAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">50</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;transactionStatus&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;pending&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;currency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;EUR&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CASH_OUT_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;images&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;balanceSender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;balanceReceiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211829b0002e341d21cddf&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;sender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x0F673BAF2C67eb6165CC526df5386032d653fbB5&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;receiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x946ec5B0fC2B78adaC1fC39DC2eE682ddFc3913E&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;owner&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;5ebaf91c80b385353b9283dd&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;metadata&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+                <span class="hljs-attr">&quot;method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;EMAIL_MONEY_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;apiClientId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;621fce78b0002ebdd121bea3&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;codeToAccept&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;53fbB5&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;emailReferenceNumber&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;emailDescription&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-attr">&quot;fromBatch&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">false</span>
+            <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;concept&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Testing&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;createdAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:34:01.427Z&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;updatedAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:34:01.427Z&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;transactionID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;AA00287325&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;__v&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211829b0002e341d21cddf&quot;</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;payload&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;EMAIL_MONEY_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211829b0002e489021cde9&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;transactionID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211829b0002e341d21cddf&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;metadata&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;apiClientId&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;621fce78b0002ebdd121bea3&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;emailToSend&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;codeToAccept&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;53fbB5&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;emailReferenceNumber&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span>
+                <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+                <span class="hljs-punctuation">{</span>
+                    <span class="hljs-attr">&quot;key&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;emailDescription&quot;</span><span class="hljs-punctuation">,</span>
+                    <span class="hljs-attr">&quot;value&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span>
+                <span class="hljs-punctuation">}</span>
+            <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;createdAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:34:01.509Z&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;updatedAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:34:01.509Z&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;__v&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211829b0002e489021cde9&quot;</span>
+        <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;transaction&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;transactionAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">50</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;transactionStatus&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;pending&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;currency&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;EUR&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;CASH_OUT_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;images&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;balanceSender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;balanceReceiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;_id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211829b0002e341d21cddf&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;sender&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x0F673BAF2C67eb6165CC526df5386032d653fbB5&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;receiver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x946ec5B0fC2B78adaC1fC39DC2eE682ddFc3913E&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;owner&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;5ebaf91c80b385353b9283dd&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;metadata&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+            <span class="hljs-attr">&quot;method&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;EMAIL_MONEY_TRANSACTION&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;apiClientId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;621fce78b0002ebdd121bea3&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;codeToAccept&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;53fbB5&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;emailReferenceNumber&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;emailDescription&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span>
+            <span class="hljs-attr">&quot;fromBatch&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-keyword">false</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;concept&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Testing&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;createdAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:34:01.427Z&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;updatedAt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-03-03T19:34:01.427Z&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;transactionID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;AA00287325&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;__v&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;62211829b0002e341d21cddf&quot;</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
+            <h3 id="request-14">Request</h3>
+            <p>POST <code>/api/private/transactions/cash-out/email</code></p>
+            <p>Host: <code>backend.ducapp.net</code></p>
+            <p>authorization: <code>Bearer &lt;YOUR_ACCESS_TOKEN&gt;</code></p>
+            <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
+            <h3 id="request-body-14">Request Body</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>email</code></td>
+                     <td>string</td>
+                     <td>The destination email</td>
+                  </tr>
+                  <tr>
+                     <td><code>amount</code></td>
+                     <td>number</td>
+                     <td>The the amount to send</td>
+                  </tr>
+                  <tr>
+                     <td><code>currency</code></td>
+                     <td>string</td>
+                     <td>The the currency of the user</td>
+                  </tr>
+                  <tr>
+                     <td><code>concept</code></td>
+                     <td>string</td>
+                     <td>A brief description</td>
+                  </tr>
+                  <tr>
+                     <td><code>location</code></td>
+                     <td><code>object</code></td>
+                     <td>Information on the users GPS location at the time of the transaction</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardNumber</code></td>
+                     <td>string</td>
+                     <td>Information for payment, credit card number</td>
+                  </tr>
+                  <tr>
+                     <td><code>creditCardHolderName</code></td>
+                     <td>string</td>
+                     <td>Information for payment, name that appears on the credit card</td>
+                  </tr>
+                  <tr>
+                     <td><code>expiryDate</code></td>
+                     <td>string</td>
+                     <td>Information for payment, expiration date</td>
+                  </tr>
+                  <tr>
+                     <td><code>cvc</code></td>
+                     <td>string</td>
+                     <td>Information for payment, cvc</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_name</code></td>
+                     <td>string</td>
+                     <td>Information for payment, street name</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_street_number</code></td>
+                     <td>string</td>
+                     <td>Information for payment, residence number</td>
+                  </tr>
+                  <tr>
+                     <td><code>avs_zipcode</code></td>
+                     <td>string</td>
+                     <td>Information for payment, zip code</td>
+                  </tr>
+                  <tr>
+                     <td><code>iso_code</code></td>
+                     <td>string</td>
+                     <td>Information for payment, card currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>cardCurrency</code></td>
+                     <td>string</td>
+                     <td>Currency of the sending user</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountry</code></td>
+                     <td>string</td>
+                     <td>Information for payment, country code of the cards currency</td>
+                  </tr>
+                  <tr>
+                     <td><code>currencyCountryName</code></td>
+                     <td>string</td>
+                     <td>Information for the payment, name of the country of the currency of the card</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="location-4">location</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>latitude</code></td>
+                     <td>string</td>
+                     <td>Latitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>longitude</code></td>
+                     <td>string</td>
+                     <td>Longitude</td>
+                  </tr>
+                  <tr>
+                     <td><code>timestamp</code></td>
+                     <td>string</td>
+                     <td>Timestamp</td>
+                  </tr>
+               </tbody>
+            </table>
+            <h3 id="response-body-14">Response Body</h3>
             <h2 id="get-exchange-rates">Get Exchange Rates</h2>
             <pre class="highlight python"><code><span class="hljs-keyword">import</span> requests
 
@@ -2218,13 +3777,13 @@ response = requests.request(<span class="hljs-string">&quot;GET&quot;</span>, ur
     <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">&quot;date&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2022-02-28&quot;</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <h3 id="request-10">Request</h3>
+            <h3 id="request-15">Request</h3>
             <p>GET <code>/api/public/rates?base={currency}</code></p>
             <p>Host: <code>backend.ducapp.net</code></p>
-            <h3 id="request-body-10">Request Body</h3>
+            <h3 id="request-body-15">Request Body</h3>
             <p>None, only a parameter query value for the currency.</p>
             <p>Eg: <code>https://backend.ducapp.net/api/public/rates?base=usd</code></p>
-            <h3 id="response-body">Response Body</h3>
+            <h3 id="response-body-15">Response Body</h3>
             <h2 id="get-delivery-zones">Get Delivery Zones</h2>
             <p>For the Home Delivery Service, there are different Zones defined in the system. Each Zone is made up of one or more provinces</p>
             <pre class="highlight shell"><code>curl --location --request GET &#x27;https://backend.ducapp.net/api/public/CU/zones&#x27;</code></pre><pre class="highlight python"><code><span class="hljs-keyword">import</span> requests
@@ -2280,13 +3839,13 @@ response = requests.request(<span class="hljs-string">&quot;GET&quot;</span>, ur
         <span class="hljs-punctuation">}</span>
     <span class="hljs-punctuation">]</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <h3 id="request-11">Request</h3>
+            <h3 id="request-16">Request</h3>
             <p>GET <code>/api/public/{COUNTRY_CODE}/zones</code></p>
             <p>Host: <code>backend.ducapp.net</code></p>
-            <h3 id="response-body-1">Response Body</h3>
+            <h3 id="response-body-16">Response Body</h3>
             <p>None, only parameter required is in the path and the country code.</p>
             <p>Eg: <code>https://backend.ducapp.net/api/public/CU/zones</code></p>
-            <h3 id="response-body-2">Response Body</h3>
+            <h3 id="response-body-17">Response Body</h3>
             <h2 id="get-fee">Get Fee</h2>
             <p>The transaction fee varies depending on the type of service and the amount to send. In the case of Home Delivery service, there are different fees per Zone and for the amount to be sent.</p>
             <pre class="highlight python"><code><span class="hljs-keyword">import</span> requests
@@ -2322,11 +3881,15 @@ response = requests.request(<span class="hljs-string">&quot;GET&quot;</span>, ur
     <span class="hljs-attr">&quot;fee&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">40</span><span class="hljs-punctuation">,</span>
     <span class="hljs-attr">&quot;currencyFee&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;USD&quot;</span>
 <span class="hljs-punctuation">}</span></code></pre>
-            <h3 id="request-12">Request</h3>
+            <h3 id="request-17">Request</h3>
             <p>GET <code>/api/public/fees/cu/deliveryCUP/Habana?amount=1000</code></p>
             <p>Host: <code>backend.ducapp.net</code></p>
-            <h3 id="request-body-11">Request Body</h3>
-            <h3 id="response-bodys">Response Bodys</h3>
+            <h3 id="request-body-16">Request Body</h3>
+            <h2 id="get-balance">Get Balance</h2>
+            <p>Get the balance of a wallet.</p>
+            <h3 id="request-18">Request</h3>
+            <h3 id="request-body-17">Request Body</h3>
+            <h3 id="response-body-18">Response Body</h3>
          </div>
          <div class=dark-box>
             <div class=lang-selector>
