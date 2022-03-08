@@ -3887,9 +3887,104 @@ response = requests.request(<span class="hljs-string">&quot;GET&quot;</span>, ur
             <h3 id="request-body-16">Request Body</h3>
             <h2 id="get-balance">Get Balance</h2>
             <p>Get the balance of a wallet.</p>
+            <pre class="highlight python"><code><span class="hljs-keyword">import</span> requests
+<span class="hljs-keyword">import</span> json
+
+url = <span class="hljs-string">&quot;https://backend.ducapp.net/api/private/balance &quot;</span>
+
+payload = json.dumps({
+  <span class="hljs-string">&quot;walletAddress&quot;</span>: <span class="hljs-string">&quot;0x0F673BAF2C67eb6165CC526df5386032d653fbB5&quot;</span>
+})
+headers = {
+  <span class="hljs-string">&#x27;authorization&#x27;</span>: <span class="hljs-string">&#x27;Bearer &lt;YOUR_ACCESS_TOKEN&gt;&#x27;</span>,
+  <span class="hljs-string">&#x27;x-api-key&#x27;</span>: <span class="hljs-string">&#x27;&lt;YOUR_API_KEY&gt;&#x27;</span>,
+  <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>
+}
+
+response = requests.request(<span class="hljs-string">&quot;GET&quot;</span>, url, headers=headers, data=payload)
+
+<span class="hljs-built_in">print</span>(response.text)</code></pre><pre class="highlight javascript"><code><span class="hljs-keyword">var</span> myHeaders = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Headers</span>();
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;authorization&quot;</span>, <span class="hljs-string">&quot;Bearer &lt;YOUR_ACCESS_TOKEN&gt;&quot;</span>);
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;x-api-key&quot;</span>, <span class="hljs-string">&quot;&lt;YOUR_API_KEY&gt;&quot;</span>);
+myHeaders.<span class="hljs-title function_">append</span>(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span>);
+
+<span class="hljs-keyword">var</span> raw = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>({
+  <span class="hljs-string">&quot;walletAddress&quot;</span>: <span class="hljs-string">&quot;0x0F673BAF2C67eb6165CC526df5386032d653fbB5&quot;</span>
+});
+
+<span class="hljs-keyword">var</span> requestOptions = {
+  <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span>,
+  <span class="hljs-attr">headers</span>: myHeaders,
+  <span class="hljs-attr">body</span>: raw,
+  <span class="hljs-attr">redirect</span>: <span class="hljs-string">&#x27;follow&#x27;</span>
+};
+
+<span class="hljs-title function_">fetch</span>(<span class="hljs-string">&quot;https://backend.ducapp.net/api/private/balance &quot;</span>, requestOptions)
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> response.<span class="hljs-title function_">text</span>())
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result))
+  .<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;error&#x27;</span>, error));</code></pre><pre class="highlight shell"><code>curl --location --request GET &#x27;https://backend.ducapp.net/api/private/balance &#x27; \
+--header &#x27;authorization: Bearer &lt;YOUR_ACCESS_TOKEN&gt;&#x27; \
+--header &#x27;x-api-key: &lt;YOUR_API_KEY&gt;&#x27; \
+--header &#x27;Content-Type: application/json&#x27; \
+--data-raw &#x27;{
+    &quot;walletAddress&quot;: &quot;0x0F673BAF2C67eb6165CC526df5386032d653fbB5&quot;
+}&#x27;</code></pre>
+            <blockquote>
+               <p>Example Response:</p>
+            </blockquote>
+            <pre class="highlight json"><code><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;walletAddress&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0x0F673BAF2C67eb6165CC526df5386032d653fbB5&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;balances&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;USD&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1.00&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;CAD&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;CUP&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;EUR&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
             <h3 id="request-18">Request</h3>
+            <p>GET <code>/api/private/balance</code></p>
+            <p>Host: <code>backend.ducapp.net</code></p>
+            <p>authorization: <code>Bearer &lt;YOUR_ACCESS_TOKEN&gt;</code></p>
+            <p>x-api-key: <code>&lt;YOUR_API_KEY&gt;</code></p>
             <h3 id="request-body-17">Request Body</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>walletAddress</code></td>
+                     <td>string</td>
+                     <td>Wallet address you want to check</td>
+                  </tr>
+               </tbody>
+            </table>
             <h3 id="response-body-18">Response Body</h3>
+            <table>
+               <thead>
+                  <tr>
+                     <th>NAME</th>
+                     <th>TYPE</th>
+                     <th>DESCRIPTION</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td><code>walletAddress</code></td>
+                     <td>string</td>
+                     <td>Wallet address</td>
+                  </tr>
+                  <tr>
+                     <td><code>balances</code></td>
+                     <td>object</td>
+                     <td>Balance of each coin</td>
+                  </tr>
+               </tbody>
+            </table>
          </div>
          <div class=dark-box>
             <div class=lang-selector>

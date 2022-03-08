@@ -3220,8 +3220,94 @@ Host: `backend.ducapp.net`
 
 Get the balance of a wallet.
 
+```python
+import requests
+import json
+
+url = "https://backend.ducapp.net/api/private/balance "
+
+payload = json.dumps({
+  "walletAddress": "0x0F673BAF2C67eb6165CC526df5386032d653fbB5"
+})
+headers = {
+  'authorization': 'Bearer <YOUR_ACCESS_TOKEN>',
+  'x-api-key': '<YOUR_API_KEY>',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+```javascript
+var myHeaders = new Headers();
+myHeaders.append("authorization", "Bearer <YOUR_ACCESS_TOKEN>");
+myHeaders.append("x-api-key", "<YOUR_API_KEY>");
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "walletAddress": "0x0F673BAF2C67eb6165CC526df5386032d653fbB5"
+});
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://backend.ducapp.net/api/private/balance ", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+```
+```shell
+curl --location --request GET 'https://backend.ducapp.net/api/private/balance ' \
+--header 'authorization: Bearer <YOUR_ACCESS_TOKEN>' \
+--header 'x-api-key: <YOUR_API_KEY>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "walletAddress": "0x0F673BAF2C67eb6165CC526df5386032d653fbB5"
+}'
+```
+
+> Example Response:
+
+```json
+{
+    "walletAddress": "0x0F673BAF2C67eb6165CC526df5386032d653fbB5",
+    "balances": {
+        "USD": "1.00",
+        "CAD": 0,
+        "CUP": 0,
+        "EUR": 0
+    }
+}
+```
+
+
 ### Request
+
+GET `/api/private/balance`
+
+Host: `backend.ducapp.net`
+
+authorization: `Bearer <YOUR_ACCESS_TOKEN>`
+
+x-api-key: `<YOUR_API_KEY>`
 
 ### Request Body
 
+| NAME            | TYPE   | DESCRIPTION                      |
+| --------------- | ------ | -------------------------------- |
+| `walletAddress` | string | Wallet address you want to check |
+
+
 ### Response Body
+
+| NAME            | TYPE   | DESCRIPTION          |
+| --------------- | ------ | -------------------- |
+| `walletAddress` | string | Wallet address       |
+| `balances`      | object | Balance of each coin |
+
+
